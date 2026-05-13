@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://uk3hker1hvst"]
+
+[ext_resource type="Texture2D" uid="uid://di0fnb0jswt" path="res://assets/ui/main_menu_bg.png" id="1_5pek0"]
+[ext_resource type="Script" uid="uid://0whvrsa7opyi" path="res://scripts/level_menu.gd" id="1_tm3l8"]
+
+[sub_resource type="GDScript" id="GDScript_5pek0"]
+
+[node name="LevelsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tm3l8")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 481.0
+offset_bottom = 270.0
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 481.0
+offset_bottom = 269.0
+texture = ExtResource("1_5pek0")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 30.0
+offset_right = 438.0
+offset_bottom = 243.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select Level"
+horizontal_alignment = 1
+
+[node name="VScrollBar" type="VScrollBar" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/VScrollBar"]
+layout_mode = 0
+offset_right = 394.0
+offset_bottom = 187.0
+
+[node name="Level1Btn" type="Button" parent="Control/MarginContainer/VBoxContainer/VScrollBar/GridContainer"]
+layout_mode = 2
+text = "Level 1"
+
+[node name="Level2Btn" type="Button" parent="Control/MarginContainer/VBoxContainer/VScrollBar/GridContainer"]
+layout_mode = 2
+text = "Level 12"
+
+[node name="BackBtn" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 394.0
+offset_top = 20.0
+offset_right = 460.0
+offset_bottom = 51.0
+text = "Back"
+script = SubResource("GDScript_5pek0")
