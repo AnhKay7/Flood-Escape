@@ -1,6 +1,6 @@
 extends Control
 
-@onready var back_button = $BackBtn
+@onready var back_button = $Control/BackBtn
 
 func _ready():
 	# Kết nối tín hiệu (Signal) từ nút Back

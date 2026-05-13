@@ -16,7 +16,7 @@ func _on_play_pressed():
 	await get_tree().create_timer(0.5).timeout
 
 	# Chuyển sang level đầu tiên
-	get_tree().change_scene_to_file("res://levels/level_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/LevelsMenu.tscn")
 
 func _on_exit_pressed():
 	# Đóng ứng dụng
