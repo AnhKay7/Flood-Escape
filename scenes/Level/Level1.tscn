@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://mg7o3any63f8"]
+
+[ext_resource type="Texture2D" uid="uid://dhj40skovhr4y" path="res://assets/sprites/icon.svg" id="1_w0kt7"]
+[ext_resource type="Script" uid="uid://0icfl8nce5qm" path="res://scenes/Level/sprite_2d.gd" id="2_h32uy"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(65, 64)
+texture = ExtResource("1_w0kt7")
+script = ExtResource("2_h32uy")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = 25.0
+offset_top = -64.0
+offset_right = 119.0
+offset_bottom = -41.0
+text = "wake me up"
