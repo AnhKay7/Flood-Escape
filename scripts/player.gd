@@ -3,7 +3,7 @@ extends CharacterBody2D
 #BASE_MOVE
 const SPEED = 150.0
 const ACCELERATION = 1500.0
-const FRICTION = 1800
+const FRICTION = 2000
 var direction = 0
 var facing_diraction = 1
 
@@ -18,7 +18,7 @@ const DASH_DURATION = 0.2
 const DASH_SPEED = 400
 const DASH_GRAVITY_MULT = 0.25
 const MAX_DASH_CD = 0.5
-const MAX_DASH_BUFFER_TIMER = 0.12
+const MAX_DASH_BUFFER_TIMER = 0.1
 
 #GRAVITY
 const MAX_FALL_SPEED = 600
@@ -35,7 +35,9 @@ var jump_buffer_timer = 0.0
 var isWallSliding = false
 var wallDirection = 0
 var wall_jump_timer = 0
-const MAX_WALL_JUMP_TIMER = 0.13
+var is_on_wall_timer = 0
+const MAX_IS_ON_WALL_TIMER = 0.05
+const MAX_WALL_JUMP_TIMER = 0.1
 const MAX_WALL_SLIDE_SPEED = 60.0
 const WALL_JUMP_VELOCITY = -350
 const WALL_JUMP_PUSHBACK_FORCE = 400
@@ -62,7 +64,8 @@ func Handle_Buffer(delta: float) -> void:
 		jump_buffer_timer -= delta
 	if dash_buffer_timer > 0:
 		dash_buffer_timer -= delta
-	
+	if is_on_wall_timer > 0:
+		is_on_wall_timer -= delta
 	#skill cool-down
 	if dashCdTimer > 0: 
 		dashCdTimer -= delta 
@@ -78,7 +81,9 @@ func Handle_Buffer(delta: float) -> void:
 		jump_buffer_timer = MAX_JUMP_BUFFER_TIMER
 	if Input.is_action_just_pressed("dash"):
 		dash_buffer_timer = MAX_DASH_BUFFER_TIMER
-
+	if is_on_wall():
+		is_on_wall_timer = MAX_IS_ON_WALL_TIMER
+		
 func Handle_jump() -> void:
 	if is_on_floor():
 		coyote_timer = MAX_COYOTE_TIMER
@@ -87,10 +92,13 @@ func Handle_jump() -> void:
 		velocity.y = JUMP_VELOCITY
 		coyote_timer = 0
 		jump_buffer_timer = 0
+		if Input.is_action_pressed("jump") == false:
+			if velocity.y < 0:
+				velocity.y /= 2
 		
 	if Input.is_action_just_released("jump"):
 		if velocity.y < 0:
-			velocity.y /= 4
+			velocity.y /= 2
 
 func Handle_Gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -105,7 +113,7 @@ func Handle_Movement(delta: float) -> void:
 		
 	if wall_jump_timer > 0:
 		direction = -wallDirection
-		velocity.x = move_toward(velocity.x, 0, FRICTION * 0.3 * delta)
+		velocity.x = move_toward(velocity.x, 0, FRICTION * 0.5 * delta)
 	else:
 		if direction:
 			velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
@@ -166,11 +174,16 @@ func Handle_Dash(delta: float) -> void:
 	if dashTimer <= 0: 
 		isDashing = false
 		#Phanh lai sau khi DASH
-		velocity.x = clamp(velocity.x, -SPEED, SPEED) ### <=> velocity.x = max(-SPEED, min(velocity.x, SPEED))
+		velocity.x = clamp(velocity.x, -SPEED * 1.1, SPEED * 1.1) ### <=> velocity.x = max(-SPEED, min(velocity.x, SPEED))
 
 func Handle_Wall_Climb(delta: float) -> void:
 	
-	if is_on_wall() and is_on_floor() == false:
+	if is_on_wall():
+		wallDirection = -get_wall_normal().x
+		
+	var close_to_wall = is_on_wall_timer > 0 and is_on_floor() == false
+	
+	if is_on_wall() and not is_on_floor():
 		if isDashing or velocity.y >= 0:
 			isWallSliding = true
 		if isDashing:
@@ -184,22 +197,19 @@ func Handle_Wall_Climb(delta: float) -> void:
 		velocity.y = min(velocity.y + get_gravity().y * 0.2 * delta, MAX_WALL_SLIDE_SPEED)
 		
 		#Tranh roi khoi tuong
-		wallDirection = -get_wall_normal().x
 		velocity.x = wallDirection * 10.0
 		
-		#Jump
-		if jump_buffer_timer > 0:
+		direction = Input.get_axis("left", "right") ###CAP NHAT HUONG
+		if direction != 0 and direction != wallDirection:
+			isWallSliding = false
+			
+	if jump_buffer_timer > 0 and close_to_wall:
 			velocity.y = WALL_JUMP_VELOCITY
 			velocity.x = -wallDirection * WALL_JUMP_PUSHBACK_FORCE
 			
 			isWallSliding = false
 			jump_buffer_timer = 0
 			coyote_timer = 0
+			is_on_wall_timer = 0
 			wall_jump_timer = MAX_WALL_JUMP_TIMER
 			
-		
-		direction = Input.get_axis("left", "right") ###CAP NHAT HUONG
-		if direction != 0 and direction != wallDirection:
-			isWallSliding = false
-			
-	
