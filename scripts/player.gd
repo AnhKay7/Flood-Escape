@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #BASE_MOVE
-const SPEED = 120.0
+const SPEED = 150.0
 const ACCELERATION = 1500.0
 const FRICTION = 1800
 var direction = 0
@@ -12,16 +12,20 @@ var unlockedDash = true
 var isDashing = false
 var canDash = false
 var dashTimer = 0.0
+var dashCdTimer = 0.0
+var dash_buffer_timer = 0.0
 const DASH_DURATION = 0.2
 const DASH_SPEED = 400
 const DASH_GRAVITY_MULT = 0.25
+const MAX_DASH_CD = 0.5
+const MAX_DASH_BUFFER_TIMER = 0.12
 
 #GRAVITY
 const MAX_FALL_SPEED = 600
 const MAX_FALL_SPEED_FOR_DASH = 80
 
 #BASE_JUMP
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -400.0
 const MAX_COYOTE_TIMER = 0.12
 var coyote_timer = 0.0
 const MAX_JUMP_BUFFER_TIMER = 0.12
@@ -57,7 +61,7 @@ func Handle_jump(delta : float) -> void:
 		
 	if Input.is_action_just_released("jump"):
 		if velocity.y < 0:
-			velocity.y = 0
+			velocity.y /= 4
 
 func Handle_Gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -74,7 +78,6 @@ func Handle_Movement(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
-	
 
 func Handle_Animation() -> void:
 	
@@ -99,21 +102,33 @@ func Handle_Animation() -> void:
 			animated_sprite_2d.play("fall")
 
 func Handle_Dash(delta: float) -> void:
+	
+	if dash_buffer_timer > 0:
+		dash_buffer_timer -= delta
+	if dashCdTimer > 0: 
+		dashCdTimer -= delta 
+		
+	if Input.is_action_just_pressed("dash"):
+		dash_buffer_timer = MAX_DASH_BUFFER_TIMER
+	
 	if is_on_floor() and isDashing == false:
 		canDash = true
 	
-	if Input.is_action_just_pressed("dash") and canDash and unlockedDash:
+	if dash_buffer_timer > 0 and canDash and unlockedDash and dashCdTimer <= 0:
 		isDashing = true
 		canDash = false
 		dashTimer = DASH_DURATION
-	
+		dashCdTimer = MAX_DASH_CD
+		velocity.y = max(velocity.y, 0) ### TRANH DASH CHEO LEN
+		
 	if isDashing:
 		dashTimer -= delta
 		velocity.x = DASH_SPEED * facing_diraction
 		
-		velocity.y = max(velocity.y, 0) ### TRANH DASH CHEO LEN
 		velocity.y += get_gravity().y * delta * DASH_GRAVITY_MULT
 		velocity.y = min(velocity.y, MAX_FALL_SPEED_FOR_DASH) 
 		
 	if dashTimer <= 0: 
 		isDashing = false
+		#Phanh lai sau khi DASH
+		velocity.x = clamp(velocity.x, -SPEED, SPEED) ### <=> velocity.x = max(-SPEED, min(velocity.x, SPEED))
