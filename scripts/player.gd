@@ -8,11 +8,11 @@ var direction = 0
 var facing_diraction = 1
 
 #DASH
-var unlockedDash = true
-var isDashing = false
-var canDash = false
-var dashTimer = 0.0
-var dashCdTimer = 0.0
+var unlocked_dash = true
+var is_dashing = false
+var can_dash = false
+var dash_timer = 0.0
+var dash_cd_timer = 0.0
 var dash_buffer_timer = 0.0
 const DASH_DURATION = 0.2
 const DASH_SPEED = 400
@@ -32,8 +32,8 @@ const MAX_JUMP_BUFFER_TIMER = 0.12
 var jump_buffer_timer = 0.0
 
 #WALL_CLIMB
-var isWallSliding = false
-var wallDirection = 0
+var is_wall_sliding = false
+var wall_direction = 0
 var wall_jump_timer = 0
 var is_on_wall_timer = 0
 const MAX_IS_ON_WALL_TIMER = 0.05
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	Handle_Buffer(delta)
 	Handle_Dash(delta)
 	Handle_Wall_Climb(delta)
-	if isDashing == false and isWallSliding == false:
+	if is_dashing == false and is_wall_sliding == false:
 		Handle_Gravity(delta)
 		Handle_jump()
 		Handle_Movement(delta)
@@ -67,8 +67,8 @@ func Handle_Buffer(delta: float) -> void:
 	if is_on_wall_timer > 0:
 		is_on_wall_timer -= delta
 	#skill cool-down
-	if dashCdTimer > 0: 
-		dashCdTimer -= delta 
+	if dash_cd_timer > 0: 
+		dash_cd_timer -= delta 
 	
 	#duration
 	if wall_jump_timer > 0:
@@ -112,7 +112,7 @@ func Handle_Movement(delta: float) -> void:
 		facing_diraction = direction
 		
 	if wall_jump_timer > 0:
-		direction = -wallDirection
+		direction = -wall_direction
 		velocity.x = move_toward(velocity.x, 0, FRICTION * 0.5 * delta)
 	else:
 		if direction:
@@ -123,16 +123,16 @@ func Handle_Movement(delta: float) -> void:
 
 func Handle_Animation() -> void:
 	
-	if isDashing:
+	if is_dashing:
 		animated_sprite_2d.play("dash")
 		return
 		
-	if isWallSliding:
+	if is_wall_sliding:
 		if animated_sprite_2d.animation != "wall_climb":
 			animated_sprite_2d.play("wall_climb")
-		if wallDirection == -1:
+		if wall_direction == -1:
 			animated_sprite_2d.flip_h = true
-		elif wallDirection == 1:
+		elif wall_direction == 1:
 			animated_sprite_2d.flip_h = false
 		return
 		
@@ -154,60 +154,60 @@ func Handle_Animation() -> void:
 
 func Handle_Dash(delta: float) -> void:
 	
-	if (is_on_floor() or is_on_wall()) and isDashing == false:
-		canDash = true
+	if (is_on_floor() or is_on_wall()) and is_dashing == false:
+		can_dash = true
 	
-	if dash_buffer_timer > 0 and canDash and unlockedDash and dashCdTimer <= 0:
-		isDashing = true
-		canDash = false
-		dashTimer = DASH_DURATION
-		dashCdTimer = MAX_DASH_CD
+	if dash_buffer_timer > 0 and can_dash and unlocked_dash and dash_cd_timer <= 0:
+		is_dashing = true
+		can_dash = false
+		dash_timer = DASH_DURATION
+		dash_cd_timer = MAX_DASH_CD
 		velocity.y = max(velocity.y, 0) ### TRANH DASH CHEO LEN
 		
-	if isDashing:
-		dashTimer -= delta
+	if is_dashing:
+		dash_timer -= delta
 		velocity.x = DASH_SPEED * facing_diraction
 		
 		velocity.y += get_gravity().y * delta * DASH_GRAVITY_MULT
 		velocity.y = min(velocity.y, MAX_FALL_SPEED_FOR_DASH) 
 		
-	if dashTimer <= 0: 
-		isDashing = false
+	if dash_timer <= 0: 
+		is_dashing = false
 		#Phanh lai sau khi DASH
 		velocity.x = clamp(velocity.x, -SPEED * 1.1, SPEED * 1.1) ### <=> velocity.x = max(-SPEED, min(velocity.x, SPEED))
 
 func Handle_Wall_Climb(delta: float) -> void:
 	
 	if is_on_wall():
-		wallDirection = -get_wall_normal().x
+		wall_direction = -get_wall_normal().x
 		
 	var close_to_wall = is_on_wall_timer > 0 and is_on_floor() == false
 	
 	if is_on_wall() and not is_on_floor():
-		if isDashing or velocity.y >= 0:
-			isWallSliding = true
-		if isDashing:
-			isDashing = false
-			dashTimer = 0
+		if is_dashing or velocity.y >= 0:
+			is_wall_sliding = true
+		if is_dashing:
+			is_dashing = false
+			dash_timer = 0
 	else:
-		isWallSliding = false
+		is_wall_sliding = false
 		
-	if isWallSliding: 
+	if is_wall_sliding: 
 		#Truot Slide
 		velocity.y = min(velocity.y + get_gravity().y * 0.2 * delta, MAX_WALL_SLIDE_SPEED)
 		
 		#Tranh roi khoi tuong
-		velocity.x = wallDirection * 10.0
+		velocity.x = wall_direction * 10.0
 		
 		direction = Input.get_axis("left", "right") ###CAP NHAT HUONG
-		if direction != 0 and direction != wallDirection:
-			isWallSliding = false
+		if direction != 0 and direction != wall_direction:
+			is_wall_sliding = false
 			
 	if jump_buffer_timer > 0 and close_to_wall:
 			velocity.y = WALL_JUMP_VELOCITY
-			velocity.x = -wallDirection * WALL_JUMP_PUSHBACK_FORCE
+			velocity.x = -wall_direction * WALL_JUMP_PUSHBACK_FORCE
 			
-			isWallSliding = false
+			is_wall_sliding = false
 			jump_buffer_timer = 0
 			coyote_timer = 0
 			is_on_wall_timer = 0
