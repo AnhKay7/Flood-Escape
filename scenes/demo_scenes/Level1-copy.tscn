@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://d3uom2g0oqnke"]
+[gd_scene load_steps=4 format=4 uid="uid://dnpg3ss0dh8p2"]
 
 [ext_resource type="TileSet" uid="uid://bkraqgnxy5mns" path="res://assets/platform.tres" id="1_dr8v5"]
 [ext_resource type="TileSet" uid="uid://dfdsyqv6jyggd" path="res://assets/background.tres" id="2_8mljt"]
