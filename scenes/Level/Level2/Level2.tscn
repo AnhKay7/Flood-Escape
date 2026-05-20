@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=4 uid="uid://tylrm4e7y83j"]
 
-[ext_resource type="TileSet" uid="uid://dcnvt3p7l6wyu" path="res://assets/industrial/industrial.tres" id="1_lu31a"]
-[ext_resource type="TileSet" uid="uid://bkraqgnxy5mns" path="res://assets/kenney_pixel-platformer/platform.tres" id="2_hbj67"]
+[ext_resource type="TileSet" uid="uid://dcnvt3p7l6wyu" path="res://assets/industrial/industrial.tres" id="1_5ypkk"]
+[ext_resource type="TileSet" uid="uid://bkraqgnxy5mns" path="res://assets/kenney_pixel-platformer/platform.tres" id="2_hboxi"]
 
 [node name="Level2" type="Node2D"]
 
 [node name="World" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAsAAAABAAEAAAACAAsAAAACAAEAAAADAAsAAAACAAEAAAAGAAsAAAADAAEAAAAEAAsAAAACAAEAAAAFAAsAAAACAAEAAAAAAAwAAAABAAEAAAAGAAwAAAADAAIAAAAGAA0AAAADAAIAAAAGAA4AAAADAAIAAAAAAA0AAAABAAIAAAAAAA4AAAABAAIAAAABAAwAAAACAAIAAAABAA0AAAACAAIAAAACAA0AAAACAAIAAAACAAwAAAACAAIAAAADAAwAAAACAAIAAAADAA0AAAACAAIAAAAEAA0AAAACAAIAAAAEAAwAAAACAAIAAAAFAAwAAAACAAIAAAAFAA0AAAACAAIAAAAFAA4AAAACAAIAAAAEAA4AAAACAAIAAAADAA4AAAACAAIAAAACAA4AAAACAAIAAAABAA4AAAACAAIAAAA=")
-tile_set = ExtResource("1_lu31a")
+tile_set = ExtResource("1_5ypkk")
 
 [node name="Things" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAADAAkAAAALAAUAAAADAAoAAAALAAYAAAAFAAoAAAAIAAQAAAA=")
-tile_set = ExtResource("2_hbj67")
+tile_set = ExtResource("2_hboxi")
 
 [node name="World2" type="TileMapLayer" parent="."]
 z_index = -1
