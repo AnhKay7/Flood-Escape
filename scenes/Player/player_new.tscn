@@ -1,11 +1,12 @@
-[gd_scene load_steps=31 format=3 uid="uid://c1q6dnk6blo0f"]
+[gd_scene load_steps=32 format=3 uid="uid://c1q6dnk6blo0f"]
 
 [ext_resource type="Script" uid="uid://wmf5bi6fi5l8" path="res://scripts/player/player.gd" id="1_y5as4"]
 [ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
 [ext_resource type="Script" uid="uid://cu7syqhpifxb3" path="res://scripts/player/state_machine.gd" id="3_pt5pi"]
 [ext_resource type="Script" uid="uid://w28f3vsw7vq3" path="res://scripts/player/state/idle.gd" id="4_4hjk8"]
-[ext_resource type="Script" uid="uid://b0b0dmetc0wa2" path="res://scripts/player/state/move.gd" id="5_mra3b"]
+[ext_resource type="Script" uid="uid://b0b0dmetc0wa2" path="res://scripts/player/state/run.gd" id="5_mra3b"]
 [ext_resource type="Script" uid="uid://w0hgyv2ny7y3" path="res://scripts/player/state/air.gd" id="6_femgl"]
+[ext_resource type="Script" uid="uid://btntmxw3p053w" path="res://scripts/player/state/fall.gd" id="7_jjwkl"]
 [ext_resource type="Script" uid="uid://bllc46cfie0qg" path="res://scripts/player/state/dash.gd" id="7_y5as4"]
 [ext_resource type="Script" uid="uid://ccclje8p21mhm" path="res://scripts/player/state/wall_climb.gd" id="8_jjwkl"]
 
@@ -204,18 +205,20 @@ autoplay = "idle"
 position = Vector2(0, -10.5)
 shape = SubResource("CapsuleShape2D_soic5")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_pt5pi")
-initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_4hjk8")
 
-[node name="Move" type="Node" parent="StateMachine"]
+[node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("5_mra3b")
 
-[node name="Air" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("6_femgl")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("7_jjwkl")
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("7_y5as4")

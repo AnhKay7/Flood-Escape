@@ -1,18 +1,18 @@
 class_name State extends Node
 
-signal Transitioned(state, new_state_name)
+signal finished(next_state_path: String, data: Dictionary)
 
-var player: Player
+func handle_input(_event: InputEvent) -> void:
+	pass
+	
+func update(_delta: float) -> void:
+	pass
+	
+func physics_update(_delta: float) -> void:
+	pass 
 
-func enter() -> void:
+func enter(previous_state_path: String, data := {}) -> void:
 	pass
 	
 func exit() -> void:
 	pass
-	
-func update(delta: float) -> void:
-	pass
-	
-func physics_update(delta: float) -> void:
-	pass
-	

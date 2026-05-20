@@ -1,4 +1,5 @@
-class_name Player extends CharacterBody2D
+extends CharacterBody2D
+class_name Player_old
 #region BASE_MOVEMENT_VARIABLES
 const SPEED = 150.0
 const ACCELERATION = 1700.0
