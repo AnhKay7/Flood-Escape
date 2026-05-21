@@ -1,3 +1,37 @@
 [gd_scene format=3 uid="uid://b3m1ua2drmajh"]
 
 [node name="GameMenu" type="Node2D"]
+
+[node name="MainMenu" type="Control" parent="."]
+visible = false
+self_modulate = Color(0.593134, 0.593134, 0.593134, 1)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 107.0
+offset_top = 54.0
+offset_right = 381.0
+offset_bottom = 205.0
+
+[node name="RestartBtn" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 81.0
+offset_right = 170.0
+offset_bottom = 112.0
+text = "Restart
+"
+
+[node name="Home" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 44.0
+offset_right = 170.0
+offset_bottom = 75.0
+text = "Home"
+
+[node name="MenuBtn" type="Button" parent="."]
+offset_left = 424.0
+offset_top = 4.0
+offset_right = 477.0
+offset_bottom = 35.0
+text = "menu"
