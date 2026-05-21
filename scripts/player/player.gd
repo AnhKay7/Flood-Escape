@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody2D
 #region BASE_MOVEMENT_VARIABLES
 const SPEED = 150.0
-const ACCELERATION = 1700.0
-const FRICTION = 2000
+const ACCELERATION = 1500.0
+const FRICTION = 1700.0
 var direction = 0
 var facing_diraction = 1
 #endregion
@@ -20,12 +20,13 @@ const MAX_DASH_CD = 0.5
 const MAX_DASH_BUFFER_TIMER = 0.1
 #endregion
 #region GRAVITY_VARIABLES
+const GRAVITY = 600;
 const MAX_FALL_SPEED = 600
 const MAX_FALL_SPEED_FOR_DASH = 80
 #endregion
 #region BASE_JUMP_VARIABLES
 const AIR_FRICTION = 1000
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -300.0
 const MAX_COYOTE_TIMER = 0.12
 var coyote_timer = 0.0
 const MAX_JUMP_BUFFER_TIMER = 0.12

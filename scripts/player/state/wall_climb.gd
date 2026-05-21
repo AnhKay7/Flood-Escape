@@ -6,7 +6,7 @@ func enter(previous_state_path: String, data = {}) -> void:
 
 func physics_update(delta: float) -> void:
 	
-	player.velocity.y = min(player.velocity.y + player.get_gravity().y * 0.1 * delta, player.MAX_WALL_SLIDE_SPEED)
+	player.velocity.y = min(player.velocity.y + player.GRAVITY * 0.1 * delta, player.MAX_WALL_SLIDE_SPEED)
 	player.velocity.x = player.wall_direction * 10.0
 	
 	player.direction = Input.get_axis("left","right")

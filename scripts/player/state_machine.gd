@@ -18,7 +18,7 @@ func _transition_to_next_state(target_state_path: String, data: Dictionary = {})
 	if not has_node(target_state_path):
 		printerr(owner.name + ": Co doi trang thai toi " + target_state_path + " nhung khong ton tai trang thai nay.")
 		return
-	
+	#print(state)
 	var previous_state_path := state.name
 	state.exit()
 	state = get_node(target_state_path)
