@@ -6,8 +6,7 @@ func execute_jump(cur_jump_velocity : float) -> void:
 	player.jump_buffer_timer = 0
 	player.is_on_wall_timer = 0
 func cut_jump() -> void:
-	if player.velocity.y < 0:
-		player.velocity.y /= 2
+	player.velocity.y /= 2
 func execute_wall_jump() -> void:
 	execute_jump(player.WALL_JUMP_VELOCITY)
 	player.velocity.x = -player.wall_direction * player.WALL_JUMP_PUSHBACK_FORCE
@@ -33,21 +32,19 @@ func physics_update(delta: float) -> void:
 		else:
 			player.velocity.x = move_toward(player.velocity.x, 0, player.AIR_FRICTION * delta)
 	
-	player.velocity.y += player.get_gravity().y * delta
+	player.velocity.y = player.velocity.y +  player.GRAVITY * delta
 	player.velocity.y = min(player.velocity.y, player.MAX_FALL_SPEED)
 	
 	if Input.is_action_pressed("jump") == false: 
 		cut_jump()
-	
-	if player.direction != 0:
-		player.facing_diraction = player.direction
+		print(player.velocity.y)
 	
 	if player.direction > 0:
 		player.animated_sprite_2d.flip_h = false
 	elif player.direction < 0:
 		player.animated_sprite_2d.flip_h = true
 	
-	if player.velocity.y >= 0:
+	if player.velocity.y > 0:
 		finished.emit(FALL)
 		return
 		
@@ -55,7 +52,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(DASH)
 		return
 		
-	if player.is_on_floor():
+	if player.is_on_floor() and player.velocity.y == 0:
 		if player.direction == 0:
 			finished.emit(IDLE)
 		else:
