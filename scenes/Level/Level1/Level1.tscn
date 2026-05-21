@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://mg7o3any63f8"]
 
-[ext_resource type="TileSet" uid="uid://bkraqgnxy5mns" path="res://assets/kenney_pixel-platformer/platform.tres" id="1_w0kt7"]
-[ext_resource type="TileSet" uid="uid://dfdsyqv6jyggd" path="res://assets/kenney_pixel-platformer/background.tres" id="2_h32uy"]
+[ext_resource type="TileSet" uid="uid://djnbfw6wh2kb4" path="res://assets/kenney_pixel-platformer/platform.tres" id="1_w0kt7"]
+[ext_resource type="TileSet" uid="uid://c12h4yda25h81" path="res://assets/kenney_pixel-platformer/background.tres" id="2_h32uy"]
 [ext_resource type="Texture2D" uid="uid://b54r8imavtcdh" path="res://assets/kenney_pixel-platformer/Tiles/tile_0108.png" id="3_8mqkg"]
 [ext_resource type="Texture2D" uid="uid://l8k5xswbepaj" path="res://assets/kenney_pixel-platformer/Tiles/tile_0107.png" id="4_8x4nf"]
 
