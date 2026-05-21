@@ -24,6 +24,7 @@ const MAX_FALL_SPEED = 600
 const MAX_FALL_SPEED_FOR_DASH = 80
 #endregion
 #region BASE_JUMP_VARIABLES
+const AIR_FRICTION = 1000
 const JUMP_VELOCITY = -500.0
 const MAX_COYOTE_TIMER = 0.12
 var coyote_timer = 0.0
