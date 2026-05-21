@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctb1a1kyib2ne"]
+[gd_scene load_steps=12 format=3 uid="uid://ynqsi4i0s4ni"]
 
 [ext_resource type="Script" uid="uid://wmf5bi6fi5l8" path="res://scripts/player/player.gd" id="1_wwtew"]
 [ext_resource type="Texture2D" uid="uid://dowo3wvh7rdu1" path="res://assets/Character/foxy/fox/fox_jump_2.png" id="2_uxo23"]

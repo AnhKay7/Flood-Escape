@@ -92,3 +92,8 @@ func Handle_Buffer(delta: float) -> void:
 		coyote_timer = MAX_COYOTE_TIMER
 		can_dash = true
 #endregion
+
+# Hàm này sẽ được WATERAREA gọi trực tiếp khi Player chạm vào vùng va chạm
+func die() -> void:
+	# Logic xử lý cái chết (Hiệu ứng, load lại cảnh...)
+	get_tree().call_deferred("reload_current_scene")
