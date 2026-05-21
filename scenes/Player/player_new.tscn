@@ -230,6 +230,3 @@ script = ExtResource("8_jjwkl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-
-[node name="GameMenu" parent="Camera2D" instance=ExtResource("10_jjwkl")]
-position = Vector2(-241, -134)

@@ -3,6 +3,8 @@ extends Node
 # Mảng chứa danh sách vật thể cần xuất hiện/biến mất (Kéo thả từ Inspector)
 @export var appear_list: Array[Node] = []
 @export var fade_list: Array[Node] = []
+@export var lower_value: float
+@export var lower_speed: float
 
 # Để an toàn, chúng ta xuất đường dẫn Node (NodePath) ra Inspector, tránh lỗi @onready bị nil
 @export var sprite_waiting_path: NodePath
@@ -53,6 +55,9 @@ func _activate_button() -> void:
 	for node in fade_list:
 		if is_instance_valid(node):
 			_set_node_state(node, false)
+	# 4. Thực hiện chức năng hạ nước
+	if Water.instance:
+		Water.instance.lower_water(lower_value, lower_speed)
 
 
 # Hàm phụ trợ để bật/tắt Visibility và Collision một cách an toàn
