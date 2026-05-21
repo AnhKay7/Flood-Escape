@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b54r8imavtcdh" path="res://assets/kenney_pixel-platformer/Tiles/tile_0108.png" id="3_qtulc"]
 [ext_resource type="Script" uid="uid://bd6lgvmme3fic" path="res://scripts/Interactors/Button.gd" id="3_v0ii6"]
 [ext_resource type="Texture2D" uid="uid://l8k5xswbepaj" path="res://assets/kenney_pixel-platformer/Tiles/tile_0107.png" id="4_v0ii6"]
-[ext_resource type="PackedScene" uid="uid://ctb1a1kyib2ne" path="res://scenes/Level/Level1/player.tscn" id="5_imqan"]
+[ext_resource type="PackedScene" path="res://scenes/Level/Level1/player.tscn" id="5_imqan"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtulc"]
 size = Vector2(18, 14)
@@ -146,6 +146,8 @@ position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_lvmmh")
 
 [node name="Node" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="Interactor/Buttons/Button2" to="Interactor/Buttons/Button2" method="_on_body_entered"]
 [connection signal="body_entered" from="Interactor/Buttons/Button1" to="Interactor/Buttons/Button1" method="_on_body_entered"]
