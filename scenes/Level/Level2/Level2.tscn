@@ -15,6 +15,7 @@ tile_set = ExtResource("2_hboxi")
 
 [node name="World2" type="TileMapLayer" parent="."]
 z_index = -1
+tile_set = ExtResource("1_lu31a")
 
 [node name="World3" type="TileMapLayer" parent="."]
 z_index = -2
