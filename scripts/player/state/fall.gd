@@ -7,18 +7,18 @@ func physics_update(delta: float) -> void:
 	
 	if player.wall_jump_timer > 0:
 		player.direction = -player.wall_direction
-		player.velocity.x = move_toward(player.velocity.x, 0, player.FRICTION * 0.5 * delta)
+		player.velocity.x = move_toward(player.velocity.x, 0, player.AIR_FRICTION * 0.5 * delta)
 	else:
 		player.direction = Input.get_axis("left", "right")
 		if player.direction:
 			player.velocity.x = move_toward(player.velocity.x, player.direction * player.SPEED, player.ACCELERATION * delta)
 		else:
-			player.velocity.x = move_toward(player.velocity.x, 0, player.FRICTION * delta)
+			player.velocity.x = move_toward(player.velocity.x, 0, player.AIR_FRICTION * delta)
 		
 	if abs(player.velocity.y) < 100.0:
-		player.velocity.y += (player.get_gravity().y * 0.5) * delta
+		player.velocity.y += (player.GRAVITY * 0.5) * delta
 	else:
-		player.velocity.y += player.get_gravity().y * delta
+		player.velocity.y += player.GRAVITY * delta
 		
 	player.velocity.y = min(player.velocity.y, player.MAX_FALL_SPEED)
 	

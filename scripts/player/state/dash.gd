@@ -15,14 +15,15 @@ func exit() -> void:
 
 func physics_update(delta: float) -> void:
 	
-	player.velocity.x = player.DASH_SPEED * player.facing_diraction
-	player.velocity.y += player.get_gravity().y * delta * player.DASH_GRAVITY_MULT
-	player.velocity.y = min(player.velocity.y, player.MAX_FALL_SPEED_FOR_DASH) 
-	
 	player.direction = Input.get_axis("left", "right")
 	
 	if player.direction != 0 and player.dash_timer <= 0:
 		player.facing_diraction = player.direction
+		
+	player.velocity.x = player.DASH_SPEED * player.facing_diraction
+	player.velocity.y += player.GRAVITY * delta * player.DASH_GRAVITY_MULT
+	player.velocity.y = min(player.velocity.y, player.MAX_FALL_SPEED_FOR_DASH) 
+	
 		
 	if player.facing_diraction > 0:
 		player.animated_sprite_2d.flip_h = false
@@ -41,5 +42,7 @@ func physics_update(delta: float) -> void:
 				finished.emit(RUN)
 		else:
 			finished.emit(FALL)
-
+		return
+	
+	
 	

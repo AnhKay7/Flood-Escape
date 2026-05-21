@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody2D
 #region BASE_MOVEMENT_VARIABLES
 const SPEED = 150.0
-const ACCELERATION = 1700.0
-const FRICTION = 2000
+const ACCELERATION = 1500.0
+const FRICTION = 1700.0
 var direction = 0
 var facing_diraction = 1
 #endregion
@@ -13,18 +13,20 @@ var can_dash = false
 var dash_timer = 0.0
 var dash_cd_timer = 0.0
 var dash_buffer_timer = 0.0
-const DASH_DURATION = 0.2
-const DASH_SPEED = 400
+const DASH_DURATION = 0.18
+const DASH_SPEED = 350
 const DASH_GRAVITY_MULT = 0.25
 const MAX_DASH_CD = 0.5
 const MAX_DASH_BUFFER_TIMER = 0.1
 #endregion
 #region GRAVITY_VARIABLES
+const GRAVITY = 600;
 const MAX_FALL_SPEED = 600
 const MAX_FALL_SPEED_FOR_DASH = 80
 #endregion
 #region BASE_JUMP_VARIABLES
-const JUMP_VELOCITY = -500.0
+const AIR_FRICTION = 1000
+const JUMP_VELOCITY = -300.0
 const MAX_COYOTE_TIMER = 0.12
 var coyote_timer = 0.0
 const MAX_JUMP_BUFFER_TIMER = 0.12
@@ -53,6 +55,20 @@ func _physics_process(delta: float) -> void:
 	state_machine._physics_process(delta)
 	
 	move_and_slide() ### MUST HAVE -> cap nhat hinh anh
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		# Kiểm tra nếu vật va chạm là một RigidBody2D (Cái hộp)
+		if collider is RigidBody2D:
+			# Tính toán hướng đẩy (dựa trên vector pháp tuyến của cú va chạm)
+			var push_direction = -collision.get_normal()
+			
+			# Tốc độ đẩy áp vào hộp (Có thể đổi số 100 tùy theo ý bạn)
+			var push_force = 100.0 
+			
+			# Áp lực lượng vào điểm va chạm để đẩy cái hộp đi
+			collider.apply_central_impulse(push_direction * push_force)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine._unhandled_input(event)
