@@ -41,7 +41,7 @@ layout_mode = 2
 text = "Select Level"
 horizontal_alignment = 1
 
-[node name="VScrollBar" type="VScrollBar" parent="Control/MarginContainer/VBoxContainer"]
+[node name="VScrollBar" type="Control" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/VScrollBar"]
