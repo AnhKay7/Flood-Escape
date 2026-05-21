@@ -1,21 +1,12 @@
-[gd_scene load_steps=14 format=4 uid="uid://mg7o3any63f8"]
+[gd_scene load_steps=9 format=4 uid="uid://mg7o3any63f8"]
 
 [ext_resource type="Script" uid="uid://bglunvabwfspt" path="res://scripts/MapScript/Level.gd" id="1_buhrm"]
 [ext_resource type="TileSet" uid="uid://djnbfw6wh2kb4" path="res://assets/kenney_pixel-platformer/platform.tres" id="1_cdtsd"]
 [ext_resource type="TileSet" uid="uid://c12h4yda25h81" path="res://assets/kenney_pixel-platformer/background.tres" id="2_imqan"]
-[ext_resource type="Texture2D" uid="uid://b54r8imavtcdh" path="res://assets/kenney_pixel-platformer/Tiles/tile_0108.png" id="3_qtulc"]
-[ext_resource type="Script" uid="uid://bd6lgvmme3fic" path="res://scripts/Interactors/Button.gd" id="3_v0ii6"]
-[ext_resource type="Texture2D" uid="uid://l8k5xswbepaj" path="res://assets/kenney_pixel-platformer/Tiles/tile_0107.png" id="4_v0ii6"]
-[ext_resource type="PackedScene" uid="uid://c1q6dnk6blo0f" path="res://scenes/Player/player_new.tscn" id="5_imqan"]
+[ext_resource type="PackedScene" path="res://scenes/Player/player_new.tscn" id="5_imqan"]
 [ext_resource type="PackedScene" uid="uid://da1fpfbhoknrx" path="res://scenes/ButtonPrefab/Button.tscn" id="6_ptnbo"]
 [ext_resource type="Script" uid="uid://dlrtam5tsdux2" path="res://scripts/Interactors/Water.gd" id="7_lvmmh"]
 [ext_resource type="Script" uid="uid://ddc34owa6xhi5" path="res://scripts/Interactors/WaterArea.gd" id="8_lvmmh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtulc"]
-size = Vector2(18, 14)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptnbo"]
-size = Vector2(18, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buhrm"]
 size = Vector2(1170, 160)
@@ -52,48 +43,24 @@ tile_set = ExtResource("2_imqan")
 
 [node name="Buttons" type="Node2D" parent="Interactor"]
 
-[node name="Button2" type="Area2D" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list", "fade_list")]
-position = Vector2(9, 27)
-script = ExtResource("3_v0ii6")
-appear_list = [NodePath("../../Appear/Appear2")]
-fade_list = [NodePath("../../Fade/Fade2")]
-sprite_waiting_path = NodePath("Before")
-sprite_deactivated_path = NodePath("After")
-
-[node name="Before" type="Sprite2D" parent="Interactor/Buttons/Button2"]
-texture = ExtResource("3_qtulc")
-
-[node name="After" type="Sprite2D" parent="Interactor/Buttons/Button2"]
-visible = false
-texture = ExtResource("4_v0ii6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor/Buttons/Button2"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_qtulc")
-
 [node name="Button1" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list") instance=ExtResource("6_ptnbo")]
 position = Vector2(510, 171)
 appear_list = [NodePath("../../Appear/Appear1")]
 
-[node name="Button3" type="Area2D" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list")]
+[node name="Button2" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list", "fade_list") instance=ExtResource("6_ptnbo")]
+position = Vector2(10, 27)
+appear_list = [NodePath("../../Appear/Appear2")]
+fade_list = [NodePath("../../Fade/Fade2")]
+sprite_waiting_path = NodePath("../Button1/Before")
+sprite_deactivated_path = NodePath("../Button1/After")
+
+[node name="Button3" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list") instance=ExtResource("6_ptnbo")]
 position = Vector2(297, -207)
-script = ExtResource("3_v0ii6")
 appear_list = [NodePath("../../Appear/Appear3")]
 lower_value = 200.0
 lower_speed = 40.0
-sprite_waiting_path = NodePath("Before")
-sprite_deactivated_path = NodePath("After")
-
-[node name="Before" type="Sprite2D" parent="Interactor/Buttons/Button3"]
-texture = ExtResource("3_qtulc")
-
-[node name="After" type="Sprite2D" parent="Interactor/Buttons/Button3"]
-visible = false
-texture = ExtResource("4_v0ii6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor/Buttons/Button3"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_ptnbo")
+sprite_waiting_path = NodePath("../Button1/Before")
+sprite_deactivated_path = NodePath("../Button1/After")
 
 [node name="Appear" type="Node2D" parent="Interactor"]
 
@@ -140,6 +107,3 @@ shape = SubResource("RectangleShape2D_buhrm")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("5_imqan")]
 position = Vector2(102, 198)
-
-[connection signal="body_entered" from="Interactor/Buttons/Button2" to="Interactor/Buttons/Button2" method="_on_body_entered"]
-[connection signal="body_entered" from="Interactor/Buttons/Button3" to="Interactor/Buttons/Button3" method="_on_body_entered"]

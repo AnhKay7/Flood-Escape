@@ -7,9 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0ii6"]
 size = Vector2(18, 14)
 
-[node name="Button1" type="Area2D" node_paths=PackedStringArray("appear_list")]
+[node name="Button1" type="Area2D"]
 script = ExtResource("1_mfcdv")
-appear_list = [NodePath("")]
 sprite_waiting_path = NodePath("Before")
 sprite_deactivated_path = NodePath("After")
 
