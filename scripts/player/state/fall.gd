@@ -5,10 +5,21 @@ func enter(previous_state_path: String, data = {}) -> void:
 	
 func physics_update(delta: float) -> void:
 	
-	player.direction = Input.get_axis("left", "right")
-	
-	player.velocity.x = move_toward(player.velocity.x, player.direction * player.SPEED, player.ACCELERATION * delta)
-	player.velocity.y += player.get_gravity().y * delta
+	if player.wall_jump_timer > 0:
+		player.direction = -player.wall_direction
+		player.velocity.x = move_toward(player.velocity.x, 0, player.FRICTION * 0.5 * delta)
+	else:
+		player.direction = Input.get_axis("left", "right")
+		if player.direction:
+			player.velocity.x = move_toward(player.velocity.x, player.direction * player.SPEED, player.ACCELERATION * delta)
+		else:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.FRICTION * delta)
+		
+	if abs(player.velocity.y) < 100.0:
+		player.velocity.y += (player.get_gravity().y * 0.5) * delta
+	else:
+		player.velocity.y += player.get_gravity().y * delta
+		
 	player.velocity.y = min(player.velocity.y, player.MAX_FALL_SPEED)
 	
 	if player.direction != 0:
@@ -26,6 +37,10 @@ func physics_update(delta: float) -> void:
 			finished.emit(RUN)
 		return
 	
+	if player.jump_buffer_timer > 0 and player.is_on_wall_timer > 0:
+		finished.emit(JUMP, {"is_wall_jump": true})
+		return
+	
 	if player.coyote_timer > 0 and player.jump_buffer_timer > 0:
 		finished.emit(JUMP)
 		return
@@ -34,7 +49,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(DASH)
 		return
 	
-	if not player.is_on_floor() and player.is_on_wall():
+	if player.is_on_wall() and player.direction == player.wall_direction:
 		finished.emit(WALL_CLIMB)
 		return 
 	pass

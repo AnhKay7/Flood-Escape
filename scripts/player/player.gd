@@ -24,7 +24,7 @@ const MAX_FALL_SPEED = 600
 const MAX_FALL_SPEED_FOR_DASH = 80
 #endregion
 #region BASE_JUMP_VARIABLES
-const JUMP_VELOCITY = -360.0
+const JUMP_VELOCITY = -500.0
 const MAX_COYOTE_TIMER = 0.12
 var coyote_timer = 0.0
 const MAX_JUMP_BUFFER_TIMER = 0.12
@@ -39,7 +39,7 @@ const MAX_IS_ON_WALL_TIMER = 0.05
 const MAX_WALL_JUMP_TIMER = 0.1
 const MAX_WALL_SLIDE_SPEED = 60.0
 const WALL_JUMP_VELOCITY = -350
-const WALL_JUMP_PUSHBACK_FORCE = 400
+const WALL_JUMP_PUSHBACK_FORCE = 200
 #endregion
 #region ANIMATION_VARIABLES
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -85,5 +85,10 @@ func Handle_Buffer(delta: float) -> void:
 	if Input.is_action_just_pressed("dash"):
 		dash_buffer_timer = MAX_DASH_BUFFER_TIMER
 	if is_on_wall():
+		can_dash = true
+		wall_direction = -get_wall_normal().x
 		is_on_wall_timer = MAX_IS_ON_WALL_TIMER
+	if is_on_floor():
+		coyote_timer = MAX_COYOTE_TIMER
+		can_dash = true
 #endregion
