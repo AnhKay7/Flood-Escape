@@ -13,8 +13,8 @@ var can_dash = false
 var dash_timer = 0.0
 var dash_cd_timer = 0.0
 var dash_buffer_timer = 0.0
-const DASH_DURATION = 0.2
-const DASH_SPEED = 400
+const DASH_DURATION = 0.18
+const DASH_SPEED = 350
 const DASH_GRAVITY_MULT = 0.25
 const MAX_DASH_CD = 0.5
 const MAX_DASH_BUFFER_TIMER = 0.1
@@ -25,7 +25,7 @@ const MAX_FALL_SPEED_FOR_DASH = 80
 #endregion
 #region BASE_JUMP_VARIABLES
 const AIR_FRICTION = 1000
-const JUMP_VELOCITY = -500.0
+const JUMP_VELOCITY = -400.0
 const MAX_COYOTE_TIMER = 0.12
 var coyote_timer = 0.0
 const MAX_JUMP_BUFFER_TIMER = 0.12
