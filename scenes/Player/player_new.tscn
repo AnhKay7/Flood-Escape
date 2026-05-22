@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://btntmxw3p053w" path="res://scripts/player/state/fall.gd" id="7_jjwkl"]
 [ext_resource type="Script" uid="uid://bllc46cfie0qg" path="res://scripts/player/state/dash.gd" id="7_y5as4"]
 [ext_resource type="Script" uid="uid://ccclje8p21mhm" path="res://scripts/player/state/wall_climb.gd" id="8_jjwkl"]
-[ext_resource type="PackedScene" uid="uid://b3m1ua2drmajh" path="res://scenes/menu/GameMenu.tscn" id="10_jjwkl"]
+[ext_resource type="PackedScene" path="res://scenes/menu/GameMenu.tscn" id="10_jjwkl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_soic5"]
 atlas = ExtResource("2_soic5")
