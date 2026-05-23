@@ -1,6 +1,6 @@
 class_name BaseCharacter extends CharacterBody2D
 #region BASE_MOVEMENT_VARIABLES
-const SPEED = 150.0
+const SPEED = 135.0
 const ACCELERATION = 1500.0
 const FRICTION = 1700.0
 var direction = 0
@@ -25,7 +25,7 @@ const MAX_FALL_SPEED = 600
 const MAX_FALL_SPEED_FOR_DASH = 80
 #endregion
 #region BASE_JUMP_VARIABLES
-const AIR_FRICTION = 1000
+const AIR_FRICTION = 1000.0
 const JUMP_VELOCITY = -350.0
 const MAX_COYOTE_TIMER = 0.12
 var coyote_timer = 0.0
@@ -38,7 +38,7 @@ var wall_direction = 0
 var wall_jump_timer = 0
 var is_on_wall_timer = 0
 const MAX_IS_ON_WALL_TIMER = 0.05
-const MAX_WALL_JUMP_TIMER = 0.1
+const MAX_WALL_JUMP_TIMER = 0.08
 const MAX_WALL_SLIDE_SPEED = 60.0
 const WALL_JUMP_VELOCITY = -300
 const WALL_JUMP_PUSHBACK_FORCE = 200
@@ -51,6 +51,8 @@ const WALL_JUMP_PUSHBACK_FORCE = 200
 
 func _physics_process(delta: float) -> void:
 	Handle_Buffer(delta)
+	
+	Handle_input()
 	
 	state_machine._physics_process(delta)
 	
@@ -95,7 +97,18 @@ func Handle_Buffer(delta: float) -> void:
 		wall_jump_timer -= delta
 	if dash_timer > 0:
 		dash_timer -= delta
-	##get buffer
+#endregion
+func Handle_input() -> void:
+	
+	direction = Input.get_axis("left","right")
+	if direction != 0 and dash_timer <= 0:
+		facing_diraction = direction
+	
+	if facing_diraction > 0:
+		animated_sprite_2d.flip_h = false
+	elif facing_diraction < 0:
+		animated_sprite_2d.flip_h = true
+	
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = MAX_JUMP_BUFFER_TIMER
 	if Input.is_action_just_pressed("dash"):
@@ -107,4 +120,3 @@ func Handle_Buffer(delta: float) -> void:
 	if is_on_floor():
 		coyote_timer = MAX_COYOTE_TIMER
 		can_dash = true
-#endregion

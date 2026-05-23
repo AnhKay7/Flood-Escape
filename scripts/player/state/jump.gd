@@ -39,11 +39,6 @@ func physics_update(delta: float) -> void:
 		cut_jump()
 		print(player.velocity.y)
 	
-	if player.direction > 0:
-		player.animated_sprite_2d.flip_h = false
-	elif player.direction < 0:
-		player.animated_sprite_2d.flip_h = true
-	
 	if player.velocity.y > 0:
 		finished.emit(FALL)
 		return

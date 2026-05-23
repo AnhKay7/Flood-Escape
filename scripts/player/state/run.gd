@@ -10,14 +10,6 @@ func physics_update(delta: float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, player.direction * player.SPEED, player.ACCELERATION * delta)
 	player.velocity.y += player.GRAVITY * delta;
 	
-	if player.direction != 0:
-		player.facing_diraction = player.direction
-	
-	if player.direction > 0:
-		player.animated_sprite_2d.flip_h = false
-	elif player.direction < 0:
-		player.animated_sprite_2d.flip_h = true
-	
 	if not player.is_on_floor():
 		finished.emit(FALL)
 		return

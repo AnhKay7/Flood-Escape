@@ -20,6 +20,6 @@ func physics_update(delta: float) -> void:
 		finished.emit(DASH)
 		return
 	
-	if player.is_on_floor() and Input.get_axis("left", "right"):
+	if player.is_on_floor() and player.direction:
 		finished.emit(RUN)
 		return
