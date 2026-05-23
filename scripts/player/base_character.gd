@@ -60,7 +60,9 @@ func _physics_process(delta: float) -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		
+		if collider is TileMapLayer and collider.name == "Spikes":
+			get_tree().reload_current_scene()
+			return
 		# Kiểm tra nếu vật va chạm là một RigidBody2D (Cái hộp)
 		if collider is RigidBody2D:
 			# Tính toán hướng đẩy (dựa trên vector pháp tuyến của cú va chạm)
