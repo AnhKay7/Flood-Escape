@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dk6u4ke3u5bgc"]
 
-[ext_resource type="PackedScene" uid="uid://c1q6dnk6blo0f" path="res://scenes/Player/player_new.tscn" id="1_q7afm"]
+[ext_resource type="PackedScene" uid="uid://c1q6dnk6blo0f" path="res://scenes/player/player_new.tscn" id="1_q7afm"]
 [ext_resource type="PackedScene" uid="uid://diwobarfawa0l" path="res://scenes/demo_scenes/box_test_platform.tscn" id="2_vqjon"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ngion"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://c1q6dnk6blo0f"]
 
 [ext_resource type="Script" uid="uid://wmf5bi6fi5l8" path="res://scripts/player/player.gd" id="1_y5as4"]
-[ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
+[ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/sprites/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
 [ext_resource type="Script" uid="uid://cu7syqhpifxb3" path="res://scripts/player/state_machine.gd" id="3_pt5pi"]
 [ext_resource type="Script" uid="uid://w28f3vsw7vq3" path="res://scripts/player/state/idle.gd" id="4_4hjk8"]
 [ext_resource type="Script" uid="uid://b0b0dmetc0wa2" path="res://scripts/player/state/run.gd" id="5_mra3b"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://u2x1xronvyo4"]
+
+[ext_resource type="Texture2D" uid="uid://dtkha4ew82skh" path="res://assets/sprites/original_platformer/Tiles/tile_0026.png" id="1_kn2gj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixxhi"]
+size = Vector2(18, 18)
+
+[node name="PushableBox" type="RigidBody2D"]
+mass = 4.0
+lock_rotation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kn2gj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ixxhi")

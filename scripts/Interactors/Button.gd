@@ -45,6 +45,8 @@ func _activate_button() -> void:
 		sprite_waiting.visible = false
 	if is_instance_valid(sprite_deactivated): 
 		sprite_deactivated.visible = true
+	else:
+		print("Khong thay after")
 	
 	# 2. Thực hiện chức năng APPEAR (Hiện lên + Bật va chạm)
 	for node in appear_list:
