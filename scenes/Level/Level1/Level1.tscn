@@ -42,13 +42,9 @@ tile_set = ExtResource("2_imqan")
 
 [node name="Buttons" type="Node2D" parent="Interactor"]
 
-[node name="Button2" type="Area2D" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list", "fade_list")]
+[node name="Button2" type="Area2D" parent="Interactor/Buttons"]
 position = Vector2(9, 27)
 script = ExtResource("3_v0ii6")
-appear_list = [NodePath("../../Appear/Appear2")]
-fade_list = [NodePath("../../Fade/Fade2")]
-sprite_waiting_path = NodePath("Before")
-sprite_deactivated_path = NodePath("After")
 
 [node name="Before" type="Sprite2D" parent="Interactor/Buttons/Button2"]
 texture = ExtResource("3_qtulc")
@@ -61,12 +57,9 @@ texture = ExtResource("4_v0ii6")
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_qtulc")
 
-[node name="Button1" type="Area2D" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list")]
+[node name="Button1" type="Area2D" parent="Interactor/Buttons"]
 position = Vector2(513, 171)
 script = ExtResource("3_v0ii6")
-appear_list = [NodePath("../../Appear/Appear1")]
-sprite_waiting_path = NodePath("Before")
-sprite_deactivated_path = NodePath("After")
 
 [node name="Before" type="Sprite2D" parent="Interactor/Buttons/Button1"]
 texture = ExtResource("3_qtulc")
@@ -79,12 +72,9 @@ texture = ExtResource("4_v0ii6")
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_v0ii6")
 
-[node name="Button3" type="Area2D" parent="Interactor/Buttons" node_paths=PackedStringArray("appear_list")]
+[node name="Button3" type="Area2D" parent="Interactor/Buttons"]
 position = Vector2(175, 183)
 script = ExtResource("3_v0ii6")
-appear_list = [NodePath("../../Appear/Appear3")]
-sprite_waiting_path = NodePath("Before")
-sprite_deactivated_path = NodePath("After")
 
 [node name="Before" type="Sprite2D" parent="Interactor/Buttons/Button3"]
 texture = ExtResource("3_qtulc")
