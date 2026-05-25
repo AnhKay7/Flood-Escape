@@ -22,13 +22,6 @@ func physics_update(delta: float) -> void:
 		
 	player.velocity.y = min(player.velocity.y, player.MAX_FALL_SPEED)
 	
-	if player.direction != 0:
-		player.facing_diraction = player.direction
-	
-	if player.direction > 0:
-		player.animated_sprite_2d.flip_h = false
-	elif player.direction < 0:
-		player.animated_sprite_2d.flip_h = true
 	
 	if player.is_on_floor():
 		if player.direction == 0:

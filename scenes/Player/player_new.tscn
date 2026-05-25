@@ -1,7 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://c1q6dnk6blo0f"]
+[gd_scene load_steps=51 format=3 uid="uid://c1q6dnk6blo0f"]
 
 [ext_resource type="Script" uid="uid://wmf5bi6fi5l8" path="res://scripts/player/player.gd" id="1_y5as4"]
-[ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
+[ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/sprites/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
 [ext_resource type="Script" uid="uid://cu7syqhpifxb3" path="res://scripts/player/state_machine.gd" id="3_pt5pi"]
 [ext_resource type="Script" uid="uid://w28f3vsw7vq3" path="res://scripts/player/state/idle.gd" id="4_4hjk8"]
 [ext_resource type="Script" uid="uid://b0b0dmetc0wa2" path="res://scripts/player/state/run.gd" id="5_mra3b"]
@@ -9,6 +9,22 @@
 [ext_resource type="Script" uid="uid://btntmxw3p053w" path="res://scripts/player/state/fall.gd" id="7_jjwkl"]
 [ext_resource type="Script" uid="uid://bllc46cfie0qg" path="res://scripts/player/state/dash.gd" id="7_y5as4"]
 [ext_resource type="Script" uid="uid://ccclje8p21mhm" path="res://scripts/player/state/wall_climb.gd" id="8_jjwkl"]
+[ext_resource type="Script" uid="uid://dvsbur3q2jgx8" path="res://scripts/player/state/death.gd" id="10_jjwkl"]
+[ext_resource type="Texture2D" uid="uid://dgkxl0ctk41ul" path="res://assets/sprites/Character/NewFoxy/Sprites/Hurt2/hurt-2.png" id="11_ipcd5"]
+[ext_resource type="AudioStream" uid="uid://1rmsnmx8mtir" path="res://assets/audio/Player/FootStep/footstep00.ogg" id="12_8kry0"]
+[ext_resource type="AudioStream" uid="uid://b1hkqldhwthm2" path="res://assets/audio/Player/FootStep/footstep01.ogg" id="13_kiaan"]
+[ext_resource type="AudioStream" uid="uid://dd02qxqlprlbk" path="res://assets/audio/Player/FootStep/footstep02.ogg" id="14_7jgq1"]
+[ext_resource type="AudioStream" uid="uid://btilvdlqqcckx" path="res://assets/audio/Player/FootStep/footstep03.ogg" id="15_2rlke"]
+[ext_resource type="AudioStream" uid="uid://b71nknlc574ec" path="res://assets/audio/Player/FootStep/footstep04.ogg" id="16_17q2d"]
+[ext_resource type="AudioStream" uid="uid://cbq1pgkh4knks" path="res://assets/audio/Player/FootStep/footstep05.ogg" id="17_33ry5"]
+[ext_resource type="AudioStream" uid="uid://cg3avsd4ecf7e" path="res://assets/audio/Player/FootStep/footstep06.ogg" id="18_7pro5"]
+[ext_resource type="AudioStream" uid="uid://bn116ykt1eb5u" path="res://assets/audio/Player/FootStep/footstep07.ogg" id="19_8r6er"]
+[ext_resource type="AudioStream" uid="uid://icqo6b8fr120" path="res://assets/audio/Player/FootStep/footstep08.ogg" id="20_lq8qb"]
+[ext_resource type="AudioStream" uid="uid://xpq8qilyv5cv" path="res://assets/audio/Player/FootStep/footstep09.ogg" id="21_7ke4b"]
+[ext_resource type="AudioStream" uid="uid://ccm6tokgky6ef" path="res://assets/audio/Player/Jump/jump.mp3" id="22_mhfib"]
+[ext_resource type="AudioStream" uid="uid://deb12u1cgllxp" path="res://assets/audio/Player/Landing/landing_on_foot.mp3" id="23_xlv56"]
+[ext_resource type="AudioStream" uid="uid://dyqcd05ry4ct" path="res://assets/audio/Player/Dash/Dash.mp3" id="24_3dn0v"]
+[ext_resource type="AudioStream" uid="uid://h8ws7v8vt8bi" path="res://assets/audio/Player/Hurt/hurt.wav" id="25_ijb23"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_soic5"]
 atlas = ExtResource("2_soic5")
@@ -26,17 +42,13 @@ region = Rect2(66, 288, 33, 32)
 atlas = ExtResource("2_soic5")
 region = Rect2(99, 288, 33, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vmnwv"]
-atlas = ExtResource("2_soic5")
-region = Rect2(0, 128, 33, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqnom"]
-atlas = ExtResource("2_soic5")
-region = Rect2(33, 128, 33, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pt5pi"]
 atlas = ExtResource("2_soic5")
 region = Rect2(33, 160, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch1ky"]
+atlas = ExtResource("2_soic5")
+region = Rect2(0, 224, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hjk8"]
 atlas = ExtResource("2_soic5")
@@ -57,6 +69,14 @@ region = Rect2(99, 0, 33, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjwkl"]
 atlas = ExtResource("2_soic5")
 region = Rect2(0, 160, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmnwv"]
+atlas = ExtResource("2_soic5")
+region = Rect2(0, 128, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqnom"]
+atlas = ExtResource("2_soic5")
+region = Rect2(33, 128, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipcd5"]
 atlas = ExtResource("2_soic5")
@@ -111,21 +131,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vmnwv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tqnom")
-}],
-"loop": true,
-"name": &"die",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_pt5pi")
 }],
 "loop": true,
 "name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch1ky")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -152,6 +169,17 @@ animations = [{
 "loop": true,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmnwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqnom")
+}],
+"loop": true,
+"name": &"panic",
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -189,7 +217,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5as4"]
-size = Vector2(12, 20)
+size = Vector2(14, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjwkl"]
+size = Vector2(10, 18)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d8y8g"]
+streams_count = 10
+stream_0/stream = ExtResource("12_8kry0")
+stream_1/stream = ExtResource("13_kiaan")
+stream_2/stream = ExtResource("14_7jgq1")
+stream_3/stream = ExtResource("15_2rlke")
+stream_4/stream = ExtResource("16_17q2d")
+stream_5/stream = ExtResource("17_33ry5")
+stream_6/stream = ExtResource("18_7pro5")
+stream_7/stream = ExtResource("19_8r6er")
+stream_8/stream = ExtResource("20_lq8qb")
+stream_9/stream = ExtResource("21_7ke4b")
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y5as4")
@@ -197,7 +241,7 @@ script = ExtResource("1_y5as4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x8khf")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -227,5 +271,55 @@ script = ExtResource("7_y5as4")
 [node name="WallClimb" type="Node" parent="StateMachine"]
 script = ExtResource("8_jjwkl")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("10_jjwkl")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+modulate = Color(0.809496, 0.393654, 0.149778, 1)
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_jjwkl")
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = ExtResource("11_ipcd5")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 600)
+initial_velocity_min = 181.82
+initial_velocity_max = 191.93
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="FootStep" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_d8y8g")
+bus = &"SFXFootStep"
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("22_mhfib")
+bus = &"SFX"
+
+[node name="Landing" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("23_xlv56")
+volume_db = 6.0
+bus = &"SFX"
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("24_3dn0v")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("25_ijb23")
+volume_db = 7.0
+bus = &"SFX"
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="StateMachine/Run" method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
