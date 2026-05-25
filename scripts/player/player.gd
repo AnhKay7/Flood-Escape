@@ -1,6 +1,11 @@
 class_name Player extends BaseCharacter
 
-
+func play_animation(animation_name: String) -> void:
+	animated_sprite_2d.play(animation_name)
+	pass
+func stop_animation() -> void:
+	animated_sprite_2d.stop()
+	pass
 func _ready() -> void:
 	
 	pass

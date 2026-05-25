@@ -1,6 +1,6 @@
 extends PlayerState
 
-@onready var dash: AudioStreamPlayer2D = $"../../Audio/Dash"
+@onready var dash: AudioStreamPlayer = $"../../Audio/Dash"
 
 func enter(previous_state_path: String, data = {}) -> void:
 	dash.play()

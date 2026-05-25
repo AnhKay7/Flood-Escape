@@ -1,7 +1,7 @@
 extends PlayerState
 
-@onready var landing: AudioStreamPlayer2D = $"../../Audio/Landing"
-@onready var foot_step: AudioStreamPlayer2D = $"../../Audio/FootStep"
+@onready var landing: AudioStreamPlayer = $"../../Audio/Landing"
+@onready var foot_step: AudioStreamPlayer = $"../../Audio/FootStep"
 
 
 func enter(previous_state_path : String, data = {}):

@@ -1,6 +1,6 @@
 extends PlayerState
 
-@onready var hurt: AudioStreamPlayer2D = $"../../Audio/Hurt"
+@onready var hurt: AudioStreamPlayer = $"../../Audio/Hurt"
 
 func handle_music() -> void:
 	hurt.play()

@@ -6,6 +6,7 @@ extends Node2D
 @onready var music: AudioStreamPlayer = $Audio/MusicStart
 @onready var music_end: AudioStreamPlayer = $Audio/MusicEnd
 @onready var explosion: AudioStreamPlayer = $Audio/Explosion
+@onready var water_cut_scene: AnimationPlayer = $CutScene/AnimationPlayer
 
 var is_level_cleared: bool = false
 
@@ -36,14 +37,11 @@ func trigger_factory_collapse() -> void:
 	if acid_water:
 		acid_water.is_active = true
 		
-	# 2. Phát nguyên bài nhạc hoành tráng
-	#$BGM_Escape.play()
-	
-	# 3. Rung camera (chúng ta sẽ làm bước này ngay sau khi bạn ghép nhạc xong)
 	
 func _on_button_2_cutscene_triggered() -> void:
-	trigger_factory_collapse()
-	pass # Replace with function body.
+	#trigger_factory_collapse()
+	water_cut_scene.play("water_scene")
+	pass
 
 func _on_finish_line_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and is_level_cleared == false:
@@ -57,4 +55,4 @@ func _on_finish_line_body_entered(body: Node2D) -> void:
 		print("STAGE CLEAR!!!")
 		get_tree().paused = true
 		pass
-	pass # Replace with function body.
+	pass

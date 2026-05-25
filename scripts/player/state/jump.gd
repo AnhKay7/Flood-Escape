@@ -1,6 +1,6 @@
 extends PlayerState
 
-@onready var jump: AudioStreamPlayer2D = $"../../Audio/Jump"
+@onready var jump: AudioStreamPlayer = $"../../Audio/Jump"
 
 func execute_jump(cur_jump_velocity : float) -> void:
 	player.velocity.y = cur_jump_velocity
