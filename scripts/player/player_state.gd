@@ -6,7 +6,7 @@ const JUMP = "Jump"
 const FALL = "Fall"
 const DASH = "Dash"
 const WALL_CLIMB = "WallClimb"
-
+const DEATH = "Death"
 var player: Player
 
 func _ready() -> void:

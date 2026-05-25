@@ -37,7 +37,7 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_pressed("jump") == false: 
 		cut_jump()
-		print(player.velocity.y)
+		#print(player.velocity.y)
 	
 	if player.velocity.y > 0:
 		finished.emit(FALL)

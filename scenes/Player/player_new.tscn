@@ -1,7 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://c1q6dnk6blo0f"]
+[gd_scene load_steps=36 format=3 uid="uid://c1q6dnk6blo0f"]
 
 [ext_resource type="Script" uid="uid://wmf5bi6fi5l8" path="res://scripts/player/player.gd" id="1_y5as4"]
-[ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
+[ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/sprites/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
 [ext_resource type="Script" uid="uid://cu7syqhpifxb3" path="res://scripts/player/state_machine.gd" id="3_pt5pi"]
 [ext_resource type="Script" uid="uid://w28f3vsw7vq3" path="res://scripts/player/state/idle.gd" id="4_4hjk8"]
 [ext_resource type="Script" uid="uid://b0b0dmetc0wa2" path="res://scripts/player/state/run.gd" id="5_mra3b"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://btntmxw3p053w" path="res://scripts/player/state/fall.gd" id="7_jjwkl"]
 [ext_resource type="Script" uid="uid://bllc46cfie0qg" path="res://scripts/player/state/dash.gd" id="7_y5as4"]
 [ext_resource type="Script" uid="uid://ccclje8p21mhm" path="res://scripts/player/state/wall_climb.gd" id="8_jjwkl"]
+[ext_resource type="Script" uid="uid://dvsbur3q2jgx8" path="res://scripts/player/state/death.gd" id="10_jjwkl"]
+[ext_resource type="Texture2D" uid="uid://dgkxl0ctk41ul" path="res://assets/sprites/Character/NewFoxy/Sprites/Hurt2/hurt-2.png" id="11_ipcd5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_soic5"]
 atlas = ExtResource("2_soic5")
@@ -26,17 +28,13 @@ region = Rect2(66, 288, 33, 32)
 atlas = ExtResource("2_soic5")
 region = Rect2(99, 288, 33, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vmnwv"]
-atlas = ExtResource("2_soic5")
-region = Rect2(0, 128, 33, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqnom"]
-atlas = ExtResource("2_soic5")
-region = Rect2(33, 128, 33, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pt5pi"]
 atlas = ExtResource("2_soic5")
 region = Rect2(33, 160, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch1ky"]
+atlas = ExtResource("2_soic5")
+region = Rect2(0, 224, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hjk8"]
 atlas = ExtResource("2_soic5")
@@ -57,6 +55,14 @@ region = Rect2(99, 0, 33, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjwkl"]
 atlas = ExtResource("2_soic5")
 region = Rect2(0, 160, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmnwv"]
+atlas = ExtResource("2_soic5")
+region = Rect2(0, 128, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqnom"]
+atlas = ExtResource("2_soic5")
+region = Rect2(33, 128, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipcd5"]
 atlas = ExtResource("2_soic5")
@@ -111,21 +117,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vmnwv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tqnom")
-}],
-"loop": true,
-"name": &"die",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_pt5pi")
 }],
 "loop": true,
 "name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch1ky")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -152,6 +155,17 @@ animations = [{
 "loop": true,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmnwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqnom")
+}],
+"loop": true,
+"name": &"panic",
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -191,13 +205,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5as4"]
 size = Vector2(12, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjwkl"]
+size = Vector2(10, 18)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y5as4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x8khf")
-animation = &"jump"
+animation = &"hurt"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -226,3 +243,30 @@ script = ExtResource("7_y5as4")
 
 [node name="WallClimb" type="Node" parent="StateMachine"]
 script = ExtResource("8_jjwkl")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("10_jjwkl")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+modulate = Color(0.809496, 0.393654, 0.149778, 1)
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_jjwkl")
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = ExtResource("11_ipcd5")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 600)
+initial_velocity_min = 181.82
+initial_velocity_max = 191.93
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

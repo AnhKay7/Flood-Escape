@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://ctb1a1kyib2ne"]
 
 [ext_resource type="Script" uid="uid://wmf5bi6fi5l8" path="res://scripts/player/player.gd" id="1_wwtew"]
-[ext_resource type="Texture2D" uid="uid://dowo3wvh7rdu1" path="res://assets/Character/foxy/fox/fox_jump_2.png" id="2_uxo23"]
-[ext_resource type="Texture2D" uid="uid://cwgjo8l0lmemi" path="res://assets/Character/foxy/fox/fox_idle_1.png" id="3_n7rn1"]
-[ext_resource type="Texture2D" uid="uid://cdiupfoo5xr6u" path="res://assets/Character/foxy/fox/fox_idle_2.png" id="4_7tfl1"]
-[ext_resource type="Texture2D" uid="uid://bunb4hruykt3x" path="res://assets/Character/foxy/fox/fox_jump_1.png" id="5_jxtnq"]
-[ext_resource type="Texture2D" uid="uid://ddf11anrulx6e" path="res://assets/Character/foxy/fox/fox_walk_1.png" id="6_t6q27"]
-[ext_resource type="Texture2D" uid="uid://bsfb723jv8ohi" path="res://assets/Character/foxy/fox/fox_walk_2.png" id="7_wyey8"]
-[ext_resource type="Texture2D" uid="uid://bj3ls24dmb1u0" path="res://assets/Character/foxy/fox/fox_walk_3.png" id="8_1bwnf"]
-[ext_resource type="Texture2D" uid="uid://c7b68c2t2m054" path="res://assets/Character/foxy/fox/fox_walk_4.png" id="9_tayva"]
+[ext_resource type="Texture2D" uid="uid://dowo3wvh7rdu1" path="res://assets/sprites/Character/foxy/fox/fox_jump_2.png" id="2_uxo23"]
+[ext_resource type="Texture2D" uid="uid://cwgjo8l0lmemi" path="res://assets/sprites/Character/foxy/fox/fox_idle_1.png" id="3_n7rn1"]
+[ext_resource type="Texture2D" uid="uid://cdiupfoo5xr6u" path="res://assets/sprites/Character/foxy/fox/fox_idle_2.png" id="4_7tfl1"]
+[ext_resource type="Texture2D" uid="uid://bunb4hruykt3x" path="res://assets/sprites/Character/foxy/fox/fox_jump_1.png" id="5_jxtnq"]
+[ext_resource type="Texture2D" uid="uid://ddf11anrulx6e" path="res://assets/sprites/Character/foxy/fox/fox_walk_1.png" id="6_t6q27"]
+[ext_resource type="Texture2D" uid="uid://bsfb723jv8ohi" path="res://assets/sprites/Character/foxy/fox/fox_walk_2.png" id="7_wyey8"]
+[ext_resource type="Texture2D" uid="uid://bj3ls24dmb1u0" path="res://assets/sprites/Character/foxy/fox/fox_walk_3.png" id="8_1bwnf"]
+[ext_resource type="Texture2D" uid="uid://c7b68c2t2m054" path="res://assets/sprites/Character/foxy/fox/fox_walk_4.png" id="9_tayva"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x8khf"]
 animations = [{

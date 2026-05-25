@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c1q6dnk6blo0f" path="res://scenes/Player/player_new.tscn" id="1_q7afm"]
 [ext_resource type="PackedScene" uid="uid://diwobarfawa0l" path="res://scenes/demo_scenes/box_test_platform.tscn" id="2_vqjon"]
-[ext_resource type="TileSet" uid="uid://dl6ougs10ar6y" path="res://assets/platform.tres" id="3_7rftp"]
+[ext_resource type="TileSet" uid="uid://dl6ougs10ar6y" path="res://assets/TileSet/platform.tres" id="3_7rftp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ngion"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://c8ur04o181ayi"]
 
-[ext_resource type="TileSet" uid="uid://dl6ougs10ar6y" path="res://assets/platform.tres" id="1_w0kt7"]
-[ext_resource type="TileSet" uid="uid://doexdppk0x03e" path="res://assets/background.tres" id="2_h32uy"]
+[ext_resource type="TileSet" uid="uid://dl6ougs10ar6y" path="res://assets/TileSet/platform.tres" id="1_w0kt7"]
+[ext_resource type="TileSet" uid="uid://doexdppk0x03e" path="res://assets/TileSet/background.tres" id="2_h32uy"]
 
 [node name="Level1" type="Node2D"]
 position = Vector2(0, 1)
