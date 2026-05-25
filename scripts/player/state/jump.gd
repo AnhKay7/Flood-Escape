@@ -1,5 +1,7 @@
 extends PlayerState
 
+@onready var jump: AudioStreamPlayer2D = $"../../Audio/Jump"
+
 func execute_jump(cur_jump_velocity : float) -> void:
 	player.velocity.y = cur_jump_velocity
 	player.coyote_timer = 0
@@ -14,6 +16,7 @@ func execute_wall_jump() -> void:
 	player.wall_jump_timer = player.MAX_WALL_JUMP_TIMER
 	
 func enter(previous_state_path: String, data = {}) -> void:
+	jump.play()
 	if data.get("is_wall_jump", false) == true or previous_state_path == WALL_CLIMB:
 		execute_wall_jump()
 	else:

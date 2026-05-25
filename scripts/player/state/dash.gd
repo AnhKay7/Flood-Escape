@@ -1,6 +1,9 @@
 extends PlayerState
 
+@onready var dash: AudioStreamPlayer2D = $"../../Audio/Dash"
+
 func enter(previous_state_path: String, data = {}) -> void:
+	dash.play()
 	player.velocity.y = max(player.velocity.y, 0) # tranh dash cheo len
 	player.can_dash = false
 	player.dash_timer = player.DASH_DURATION

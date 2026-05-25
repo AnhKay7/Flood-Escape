@@ -1,7 +1,12 @@
 extends PlayerState
 
+@onready var landing: AudioStreamPlayer2D = $"../../Audio/Landing"
+@onready var foot_step: AudioStreamPlayer2D = $"../../Audio/FootStep"
+
 
 func enter(previous_state_path : String, data = {}):
+	if (previous_state_path == FALL):
+		landing.play()
 	player.animated_sprite_2d.play("run")
 	
 func physics_update(delta: float) -> void:
@@ -25,3 +30,9 @@ func physics_update(delta: float) -> void:
 		return
 	
 	
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if not player.animated_sprite_2d.animation == "run":
+		return
+	if player.animated_sprite_2d.frame == 0 || player.animated_sprite_2d.frame == 2 || player.animated_sprite_2d.frame == 4:
+		foot_step.play()
+	pass # Replace with function body.

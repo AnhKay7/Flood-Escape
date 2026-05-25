@@ -1,7 +1,12 @@
 extends PlayerState
 
+@onready var landing: AudioStreamPlayer2D = $"../../Audio/Landing"
+
 func enter(previous_state_path: String, data = {}) -> void:
 	#player.velocity.x = 0.0
+	if (previous_state_path == FALL):
+		print("ASDOJOA")
+		landing.play()
 	player.animated_sprite_2d.play("idle")
 
 func physics_update(delta: float) -> void:

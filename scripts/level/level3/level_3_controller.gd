@@ -5,6 +5,8 @@ extends Node2D
 @onready var player: Player = $Player
 @onready var music: AudioStreamPlayer = $Audio/MusicStart
 @onready var music_end: AudioStreamPlayer = $Audio/MusicEnd
+@onready var explosion: AudioStreamPlayer = $Audio/Explosion
+
 var is_level_cleared: bool = false
 
 func _ready() -> void:
@@ -25,6 +27,7 @@ func trigger_factory_collapse() -> void:
 		player.set_physics_process(false)
 	if camera.has_method("start_screen_shake"):
 		camera.start_screen_shake(15.0, 2.0)
+	explosion.play()
 	await get_tree().create_timer(2.0).timeout
 	if music:
 		music.play()

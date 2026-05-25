@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bo2t4k38h5aft"]
+[gd_scene load_steps=30 format=4 uid="uid://bo2t4k38h5aft"]
 
 [ext_resource type="Script" uid="uid://b1pvvi56mnx7l" path="res://scripts/level/level3/level_3_controller.gd" id="1_84ksr"]
 [ext_resource type="TileSet" uid="uid://b067y43hp6x5m" path="res://assets/TileSet/level_3.tres" id="1_jbbhb"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://dxk4o77438r3j" path="res://scenes/Level/Level3/Object/scripts/spikes.gd" id="3_qhmq1"]
 [ext_resource type="Texture2D" uid="uid://b54r8imavtcdh" path="res://assets/kenney_pixel-platformer/Tiles/tile_0108.png" id="4_mgslf"]
 [ext_resource type="Texture2D" uid="uid://l8k5xswbepaj" path="res://assets/kenney_pixel-platformer/Tiles/tile_0107.png" id="5_d12gi"]
+[ext_resource type="AudioStream" uid="uid://curaafeas1pi7" path="res://assets/audio/Object/Button/ButtonClick.ogg" id="7_c2nrx"]
 [ext_resource type="Script" uid="uid://dtmjj8tqc2f4q" path="res://scripts/level/level3/camera_controller.gd" id="7_mgslf"]
 [ext_resource type="AudioStream" uid="uid://dvocwdbge7k7h" path="res://assets/audio/music/Escaping-the-Sandworm.mp3" id="8_d12gi"]
 [ext_resource type="AudioStream" uid="uid://wpd7kle3xkon" path="res://assets/audio/music/Escaping-the-Sandworm-Ending3.mp3" id="9_2mqoe"]
+[ext_resource type="AudioStream" uid="uid://b6iqdkhcifwom" path="res://assets/audio/Level/explosion.mp3" id="12_k0lhp"]
 
 [sub_resource type="Animation" id="Animation_mgslf"]
 length = 0.001
@@ -96,6 +98,7 @@ script/source = "extends Area2D
 @onready var after: Sprite2D = $After
 @onready var moving_platform: AnimatableBody2D = $\"../../Platform/Moving Platform\"
 @onready var moving_platform_2: AnimatableBody2D = $\"../../Platform/Moving Platform2\"
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	before.visible = true
@@ -149,6 +152,7 @@ func activate_bridge() -> void:
 	# 3. Chặn không cho bấm lại lần 2
 	can_interact = false
 	set_deferred(\"monitoring\", false) # Tắt vùng quét Area2D
+	audio_stream_player_2d.play()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mqoe"]
@@ -161,6 +165,7 @@ script/source = "extends Area2D
 @onready var before: Sprite2D = $Before
 @onready var after: Sprite2D = $After
 @onready var door: TileMapLayer = $\"../Door\"
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 signal cutscene_triggered
 
@@ -193,6 +198,7 @@ func update_sprite() -> void:
 func activate() -> void:
 
 	update_sprite()
+	audio_stream_player_2d.play()
 	
 	cutscene_triggered.emit()
 	
@@ -379,6 +385,11 @@ offset_bottom = 16.0
 text = "F to interact
 "
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="World/Interactor/Button1"]
+stream = ExtResource("7_c2nrx")
+volume_db = -4.0
+bus = &"SFX"
+
 [node name="Button2" type="Area2D" parent="World/Interactor"]
 position = Vector2(1970, -233)
 script = SubResource("GDScript_d12gi")
@@ -403,6 +414,10 @@ offset_bottom = 16.0
 text = "F to interact
 "
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="World/Interactor/Button2"]
+stream = ExtResource("7_c2nrx")
+volume_db = -4.0
+
 [node name="Win" type="Node" parent="World"]
 
 [node name="FinishLine" type="Area2D" parent="World/Win"]
@@ -414,7 +429,7 @@ shape = SubResource("RectangleShape2D_jbbhb")
 
 [node name="Player" parent="." instance=ExtResource("2_42xeq")]
 z_index = 4
-position = Vector2(1968, -224)
+position = Vector2(1597, -367)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -8)
@@ -451,7 +466,7 @@ offset_bottom = 459.0
 color = Color(0.113725, 0.882353, 0.454902, 1)
 
 [node name="WaterTrigger" type="Area2D" parent="AcidWater"]
-position = Vector2(2030, -233)
+position = Vector2(2086, -205)
 script = SubResource("GDScript_5csmw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AcidWater/WaterTrigger"]
@@ -483,6 +498,11 @@ parameters/looping = true
 [node name="MusicEnd" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("9_2mqoe")
 bus = &"Music"
+
+[node name="Explosion" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("12_k0lhp")
+volume_db = 5.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="World/Interactor/Button1" to="World/Interactor/Button1" method="_on_body_entered"]
 [connection signal="body_exited" from="World/Interactor/Button1" to="World/Interactor/Button1" method="_on_body_exited"]

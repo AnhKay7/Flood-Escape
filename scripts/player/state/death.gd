@@ -1,6 +1,9 @@
 extends PlayerState
 
+@onready var hurt: AudioStreamPlayer2D = $"../../Audio/Hurt"
+
 func handle_music() -> void:
+	hurt.play()
 	var bus_index = AudioServer.get_bus_index("Music")
 	var low_pass_effect = AudioServer.get_bus_effect(bus_index, 0)
 	AudioServer.set_bus_effect_enabled(bus_index, 0, true)
