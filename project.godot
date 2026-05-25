@@ -15,6 +15,10 @@ run/main_scene="uid://cg2fi36llmcs2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/sprites/icon.svg"
 
+[autoload]
+
+Water="*res://scripts/Interactors/Water.gd"
+
 [display]
 
 window/size/viewport_width=480
