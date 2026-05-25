@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://brkrhc6bxrrq3"]
 
 [ext_resource type="TileSet" uid="uid://dcnvt3p7l6wyu" path="res://assets/industrial/industrial.tres" id="1_5ypkk"]
-[ext_resource type="TileSet" uid="uid://djnbfw6wh2kb4" path="res://assets/kenney_pixel-platformer/platform.tres" id="2_hboxi"]
+[ext_resource type="TileSet" uid="uid://p26p05u402mf" path="res://assets/kenney_pixel-platformer/platform.tres" id="2_hboxi"]
 
 [node name="Level2" type="Node2D"]
 
@@ -15,7 +15,7 @@ tile_set = ExtResource("2_hboxi")
 
 [node name="World2" type="TileMapLayer" parent="."]
 z_index = -1
-tile_set = ExtResource("1_lu31a")
+tile_set = ExtResource("1_5ypkk")
 
 [node name="World3" type="TileMapLayer" parent="."]
 z_index = -2
