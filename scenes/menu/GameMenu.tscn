@@ -1,4 +1,41 @@
-[gd_scene format=3 uid="uid://b3m1ua2drmajh"]
+[gd_scene load_steps=3 format=3 uid="uid://b3m1ua2drmajh"]
+
+[sub_resource type="GDScript" id="GDScript_e06li"]
+script/source = "extends Control
+
+# Sửa thành đường dẫn trực tiếp từ Node MainMenu xuống nút con
+@onready var restart_btn = $RestartBtn
+@onready var home_btn = $HomeBtn
+
+func _ready() -> void:
+	restart_btn.pressed.connect(_on_restart_btn_pressed)
+	home_btn.pressed.connect(_on_home_btn_pressed)
+
+func _on_restart_btn_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_home_btn_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file(\"res://scenes/menu/MainMenu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_nbvmo"]
+script/source = "extends Button
+
+@export var main_menu: Control
+
+func _ready() -> void:
+	pressed.connect(_on_menu_button_pressed)
+
+func _on_menu_button_pressed() -> void:
+	if main_menu:
+		main_menu.visible = !main_menu.visible
+		
+		get_tree().paused = main_menu.visible
+	else:
+		print(\"Lỗi: Chưa gán Node Menu vào Inspector!\")
+"
 
 [node name="GameMenu" type="Node2D"]
 
@@ -9,29 +46,38 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 107.0
 offset_top = 54.0
-offset_right = 381.0
-offset_bottom = 205.0
+offset_right = 378.0
+offset_bottom = 206.0
+script = SubResource("GDScript_e06li")
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu"]
+modulate = Color(0.168627, 0.168627, 0.168627, 0.407843)
+layout_mode = 0
+offset_right = 271.0
+offset_bottom = 152.0
 
 [node name="RestartBtn" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 81.0
-offset_right = 170.0
-offset_bottom = 112.0
+offset_left = 104.0
+offset_top = 94.0
+offset_right = 169.0
+offset_bottom = 125.0
 text = "Restart
 "
 
-[node name="Home" type="Button" parent="MainMenu"]
+[node name="HomeBtn" type="Button" parent="MainMenu"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 44.0
-offset_right = 170.0
-offset_bottom = 75.0
+offset_left = 104.0
+offset_top = 57.0
+offset_right = 169.0
+offset_bottom = 88.0
 text = "Home"
 
-[node name="MenuBtn" type="Button" parent="."]
+[node name="MenuBtn" type="Button" parent="." node_paths=PackedStringArray("main_menu")]
 offset_left = 424.0
 offset_top = 4.0
 offset_right = 477.0
 offset_bottom = 35.0
 text = "menu"
+script = SubResource("GDScript_nbvmo")
+main_menu = NodePath("../MainMenu")

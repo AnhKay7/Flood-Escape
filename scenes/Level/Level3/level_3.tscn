@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bo2t4k38h5aft"]
+[gd_scene load_steps=31 format=4 uid="uid://bo2t4k38h5aft"]
 
 [ext_resource type="Script" uid="uid://b1pvvi56mnx7l" path="res://scripts/level/level3/level_3_controller.gd" id="1_84ksr"]
 [ext_resource type="TileSet" uid="uid://b067y43hp6x5m" path="res://assets/TileSet/level_3.tres" id="1_jbbhb"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dvocwdbge7k7h" path="res://assets/audio/music/Escaping-the-Sandworm.mp3" id="8_d12gi"]
 [ext_resource type="AudioStream" uid="uid://wpd7kle3xkon" path="res://assets/audio/music/Escaping-the-Sandworm-Ending3.mp3" id="9_2mqoe"]
 [ext_resource type="AudioStream" uid="uid://b6iqdkhcifwom" path="res://assets/audio/Level/explosion.mp3" id="12_k0lhp"]
+[ext_resource type="PackedScene" uid="uid://b3m1ua2drmajh" path="res://scenes/menu/GameMenu.tscn" id="13_kw2p5"]
 
 [sub_resource type="Animation" id="Animation_mgslf"]
 length = 0.001
@@ -429,10 +430,10 @@ shape = SubResource("RectangleShape2D_jbbhb")
 
 [node name="Player" parent="." instance=ExtResource("2_42xeq")]
 z_index = 4
-position = Vector2(1597, -367)
+position = Vector2(-41, 7)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -8)
+position = Vector2(0, -9)
 offset = Vector2(0, -30)
 zoom = Vector2(0.8, 0.8)
 limit_left = -160
@@ -503,6 +504,13 @@ bus = &"Music"
 stream = ExtResource("12_k0lhp")
 volume_db = 5.0
 bus = &"SFX"
+
+[node name="Menu" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+
+[node name="GameMenu" parent="Menu" instance=ExtResource("13_kw2p5")]
+process_mode = 3
 
 [connection signal="body_entered" from="World/Interactor/Button1" to="World/Interactor/Button1" method="_on_body_entered"]
 [connection signal="body_exited" from="World/Interactor/Button1" to="World/Interactor/Button1" method="_on_body_exited"]

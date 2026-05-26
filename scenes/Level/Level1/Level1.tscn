@@ -105,5 +105,7 @@ script = ExtResource("8_lvmmh")
 position = Vector2(387, 353)
 shape = SubResource("RectangleShape2D_buhrm")
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("5_imqan")]
-position = Vector2(102, 198)
+[node name="Player" parent="." instance=ExtResource("5_imqan")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
