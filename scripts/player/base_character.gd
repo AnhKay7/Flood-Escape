@@ -57,19 +57,19 @@ func _physics_process(delta: float) -> void:
 	state_machine._physics_process(delta)
 	
 	move_and_slide() ### MUST HAVE -> cap nhat hinh anh
+	# Đặt đoạn này ngay SAU hàm move_and_slide() của Player
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		# Kiểm tra nếu vật va chạm là một RigidBody2D (Cái hộp)
+		
 		if collider is RigidBody2D:
-			# Tính toán hướng đẩy (dựa trên vector pháp tuyến của cú va chạm)
-			var push_direction = -collision.get_normal()
+			var normal = collision.get_normal()
 			
-			# Tốc độ đẩy áp vào hộp (Có thể đổi số 100 tùy theo ý bạn)
-			var push_force = 100.0 
-			
-			# Áp lực lượng vào điểm va chạm để đẩy cái hộp đi
-			collider.apply_central_impulse(push_direction * push_force)
+			if normal.y < -0.5:
+				continue
+				
+			if abs(velocity.x) > 0.1:
+				collider.linear_velocity.x = velocity.x * 0.8
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine._unhandled_input(event)
