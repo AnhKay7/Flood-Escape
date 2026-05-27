@@ -57,6 +57,10 @@ text = "Level 1"
 layout_mode = 2
 text = "Level 2"
 
+[node name="Level3Btn" type="Button" parent="Control/MarginContainer/VBoxContainer/VScrollBar/GridContainer"]
+layout_mode = 2
+text = "Level 3"
+
 [node name="BackBtn" type="Button" parent="Control"]
 layout_mode = 2
 offset_left = 394.0

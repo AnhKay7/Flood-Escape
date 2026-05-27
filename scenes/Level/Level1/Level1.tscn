@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://mg7o3any63f8"]
+[gd_scene load_steps=12 format=4 uid="uid://mg7o3any63f8"]
 
 [ext_resource type="Script" uid="uid://bglunvabwfspt" path="res://scripts/MapScript/Level.gd" id="1_buhrm"]
 [ext_resource type="TileSet" uid="uid://p26p05u402mf" path="res://assets/kenney_pixel-platformer/platform.tres" id="1_cdtsd"]
@@ -11,6 +11,27 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buhrm"]
 size = Vector2(1170, 160)
+
+[sub_resource type="GDScript" id="GDScript_ptnbo"]
+script/source = "extends Area2D
+
+# Tạo ô kéo thả để trỏ vào GameMenu
+@export var game_menu_node: Node2D
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		# Nếu đã kéo thả đúng Node GameMenu, ta gọi hàm kích hoạt nội bộ của nó
+		if game_menu_node and game_menu_node.has_method(\"activate_win_menu\"):
+			game_menu_node.activate_win_menu()
+		else:
+			print(\"Lỗi: Bạn chưa kéo thả Node GameMenu vào Inspector của FinishLine!\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptnbo"]
+size = Vector2(5, 35.75)
 
 [node name="Level1" type="Node2D"]
 position = Vector2(0, 1)
@@ -117,4 +138,24 @@ process_mode = 3
 layer = 10
 
 [node name="GameMenu" parent="Menu" instance=ExtResource("8_ptnbo")]
+
+[node name="Label" type="Label" parent="Menu"]
+visible = false
+offset_left = 244.0
+offset_top = 71.0
+offset_right = 284.0
+offset_bottom = 94.0
+text = "Win"
+
+[node name="Win" type="Node" parent="."]
 process_mode = 3
+
+[node name="FinishLine" type="Area2D" parent="Win" node_paths=PackedStringArray("game_menu_node")]
+process_mode = 3
+position = Vector2(1550, -3445)
+script = SubResource("GDScript_ptnbo")
+game_menu_node = NodePath("../../Menu/GameMenu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Win/FinishLine"]
+position = Vector2(-862.5, 3284.88)
+shape = SubResource("RectangleShape2D_ptnbo")
