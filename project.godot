@@ -17,7 +17,7 @@ config/icon="res://assets/sprites/icon.svg"
 
 [autoload]
 
-Water="*res://scripts/Interactors/Water.gd"
+Water="*res://scripts/interactors/water.gd"
 
 [display]
 

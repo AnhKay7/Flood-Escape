@@ -15,10 +15,10 @@ func _on_play_pressed():
 	print("Starting Game...")
 
 	# Chuyển sang level đầu tiên
-	get_tree().change_scene_to_file("res://scenes/menu/LevelsMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/levels_menu.tscn")
 
 func _on_setting_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu/Settings.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/settings.tscn")
 
 func _on_exit_pressed():
 	# Đóng ứng dụng

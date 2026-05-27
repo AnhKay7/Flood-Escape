@@ -12,13 +12,13 @@ func _ready():
 	lv3_button.pressed.connect(_on_lv3_pressed)
 	
 func _on_lv1_pressed():
-	get_tree().change_scene_to_file("res://scenes/Level/Level1/Level1.tscn")
+	get_tree().change_scene_to_file("res://scenes/level/level_1/level_1.tscn")
 	
 func _on_lv2_pressed():
-	get_tree().change_scene_to_file("res://scenes/Level/Level2/Level2.tscn")
+	get_tree().change_scene_to_file("res://scenes/level/level_2/level_2.tscn")
 	
 func _on_lv3_pressed():
-	get_tree().change_scene_to_file("res://scenes/Level/Level3/Level3.tscn")
+	get_tree().change_scene_to_file("res://scenes/level/level_3/level_3.tscn")
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
