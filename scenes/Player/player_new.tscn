@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c1q6dnk6blo0f"]
+[gd_scene load_steps=58 format=3 uid="uid://c1q6dnk6blo0f"]
 
 [ext_resource type="Script" uid="uid://wmf5bi6fi5l8" path="res://scripts/player/player.gd" id="1_y5as4"]
 [ext_resource type="Texture2D" uid="uid://bhncewjdwprjk" path="res://assets/sprites/Character/NewFoxy/Spritesheet.png" id="2_soic5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://btntmxw3p053w" path="res://scripts/player/state/fall.gd" id="7_jjwkl"]
 [ext_resource type="Script" uid="uid://bllc46cfie0qg" path="res://scripts/player/state/dash.gd" id="7_y5as4"]
 [ext_resource type="Script" uid="uid://ccclje8p21mhm" path="res://scripts/player/state/wall_climb.gd" id="8_jjwkl"]
+[ext_resource type="Script" uid="uid://cbhmeu61ebol3" path="res://scripts/player/state/ladder_climb.gd" id="10_7jgq1"]
 [ext_resource type="Script" uid="uid://dvsbur3q2jgx8" path="res://scripts/player/state/death.gd" id="10_jjwkl"]
 [ext_resource type="Texture2D" uid="uid://dgkxl0ctk41ul" path="res://assets/sprites/Character/NewFoxy/Sprites/Hurt2/hurt-2.png" id="11_ipcd5"]
 [ext_resource type="Script" uid="uid://cynim57equc2t" path="res://scripts/player/state/cut_scene.gd" id="11_kiaan"]
@@ -70,6 +71,26 @@ region = Rect2(99, 0, 33, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjwkl"]
 atlas = ExtResource("2_soic5")
 region = Rect2(0, 160, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rlke"]
+atlas = ExtResource("2_soic5")
+region = Rect2(0, 64, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17q2d"]
+atlas = ExtResource("2_soic5")
+region = Rect2(33, 64, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33ry5"]
+atlas = ExtResource("2_soic5")
+region = Rect2(66, 64, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pro5"]
+atlas = ExtResource("2_soic5")
+region = Rect2(99, 64, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jgq1"]
+atlas = ExtResource("2_soic5")
+region = Rect2(0, 320, 33, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmnwv"]
 atlas = ExtResource("2_soic5")
@@ -173,6 +194,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_2rlke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17q2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33ry5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pro5")
+}],
+"loop": true,
+"name": &"ladder_climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jgq1")
+}],
+"loop": true,
+"name": &"look_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vmnwv")
 }, {
 "duration": 1.0,
@@ -242,7 +288,7 @@ script = ExtResource("1_y5as4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_x8khf")
-animation = &"run"
+animation = &"look_up"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -271,6 +317,9 @@ script = ExtResource("7_y5as4")
 
 [node name="WallClimb" type="Node" parent="StateMachine"]
 script = ExtResource("8_jjwkl")
+
+[node name="LadderClimb" type="Node" parent="StateMachine"]
+script = ExtResource("10_7jgq1")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("10_jjwkl")
@@ -308,16 +357,17 @@ bus = &"SFXFootStep"
 
 [node name="Jump" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("22_mhfib")
+volume_db = -3.0
 bus = &"SFX"
 
 [node name="Landing" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("23_xlv56")
-volume_db = 6.0
+volume_db = 2.0
 bus = &"SFX"
 
 [node name="Dash" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("24_3dn0v")
-volume_db = 5.0
+volume_db = 3.0
 bus = &"SFX"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Audio"]

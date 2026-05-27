@@ -8,7 +8,7 @@ const DASH = "Dash"
 const WALL_CLIMB = "WallClimb"
 const DEATH = "Death"
 const CUTSCENE = "CutScene"
-
+const LADDERCLIMB = "LadderClimb"
 var player: Player
 
 func _ready() -> void:

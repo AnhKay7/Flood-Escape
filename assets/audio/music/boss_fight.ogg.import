@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://co2u01hgdm74v"
-path="res://.godot/imported/boss_fight.ogg-698fd783f7b5cdcfc2d41af094943638.oggvorbisstr"
+path="res://.godot/imported/boss_fight.ogg-510b2bebbb9a3a95dd979e2f72f6ef69.oggvorbisstr"
 
 [deps]
 
-source_file="res://assets/audio/music/boss_fight.ogg"
-dest_files=["res://.godot/imported/boss_fight.ogg-698fd783f7b5cdcfc2d41af094943638.oggvorbisstr"]
+source_file="res://assets/audio/Music/boss_fight.ogg"
+dest_files=["res://.godot/imported/boss_fight.ogg-510b2bebbb9a3a95dd979e2f72f6ef69.oggvorbisstr"]
 
 [params]
 

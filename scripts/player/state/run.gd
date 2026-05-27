@@ -11,12 +11,19 @@ func enter(previous_state_path : String, data = {}):
 	
 func physics_update(delta: float) -> void:
 	
-	player.direction = Input.get_axis("left", "right")
+	if player.facing_diraction > 0:
+		player.animated_sprite_2d.flip_h = false
+	elif player.facing_diraction < 0:
+		player.animated_sprite_2d.flip_h = true
+	
 	player.velocity.x = move_toward(player.velocity.x, player.direction * player.SPEED, player.ACCELERATION * delta)
 	player.velocity.y += player.GRAVITY * delta;
 	
 	if not player.is_on_floor():
 		finished.emit(FALL)
+		return
+	if player.is_near_ladder and Input.is_action_pressed("up"):
+		finished.emit(LADDERCLIMB)
 		return
 	if player.jump_buffer_timer > 0.0:
 		finished.emit(JUMP)

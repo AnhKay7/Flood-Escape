@@ -46,13 +46,22 @@ const WALL_JUMP_PUSHBACK_FORCE = 200
 #region ANIMATION_VARIABLES
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 #endregion
+#region LADDER_CLIMB_VARIABLES
+var is_near_ladder: bool = false
+var ladder_hop_timer = 0.0
+var climb_direction = 0
+const MAX_LADDER_HOP_TIMMER = 0.2
+const LADDER_CLIMB_MOVE_SPEED = 55
+const CLIMB_SPEED = 70.0
 
+#endregion
 @onready var state_machine = $StateMachine
+@export var world_tilemap: TileMapLayer
 
 func _physics_process(delta: float) -> void:
-	Handle_Buffer(delta)
+	handle_buffer(delta)
 	
-	Handle_input()
+	handle_input()
 	
 	state_machine._physics_process(delta)
 	
@@ -78,8 +87,10 @@ func _process(delta: float) -> void:
 	state_machine._process(delta)
 
 #region TIMER_MANAGEMENT
-func Handle_Buffer(delta: float) -> void:
+func handle_buffer(delta: float) -> void:
 	##buffer
+	if ladder_hop_timer > 0:
+		ladder_hop_timer -= delta
 	if jump_buffer_timer > 0:
 		jump_buffer_timer -= delta
 	if dash_buffer_timer > 0:
@@ -97,17 +108,26 @@ func Handle_Buffer(delta: float) -> void:
 	if dash_timer > 0:
 		dash_timer -= delta
 #endregion
-func Handle_input() -> void:
+func check_ladder() -> bool:
+	if not world_tilemap:
+		return false
+		
+	var map_pos = world_tilemap.local_to_map(global_position)
 	
+	var tile_data = world_tilemap.get_cell_tile_data(map_pos)
+	
+	if tile_data:
+		return tile_data.get_custom_data("is_ladder")
+
+	return false
+func handle_input() -> void:
+	
+	climb_direction = Input.get_axis("up", "down")
 	direction = Input.get_axis("left","right")
 	if direction != 0 and dash_timer <= 0:
 		facing_diraction = direction
 	
-	if facing_diraction > 0:
-		animated_sprite_2d.flip_h = false
-	elif facing_diraction < 0:
-		animated_sprite_2d.flip_h = true
-	
+	is_near_ladder = check_ladder()
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = MAX_JUMP_BUFFER_TIMER
 	if Input.is_action_just_pressed("dash"):

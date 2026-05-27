@@ -11,7 +11,7 @@ func handle_music() -> void:
 	audio_tween.tween_property(low_pass_effect, "cutoff_hz", 300.0, 1.5)
 	pass
 func handle_camera() -> void:
-	var camera = owner.get_node_or_null("Camera2D")
+	var camera = owner.get_node_or_null("playercamera")
 	if camera:
 		var tween = create_tween()
 		tween.tween_property(camera, "zoom", Vector2(1.5, 1.5), 0.1)
@@ -48,5 +48,9 @@ func enter(previous_state_path: String, data = {}) -> void:
 	
 func physics_update(delta: float) -> void:
 	
+	if player.facing_diraction > 0:
+		player.animated_sprite_2d.flip_h = false
+	elif player.facing_diraction < 0:
+		player.animated_sprite_2d.flip_h = true
 	player.velocity = Vector2.ZERO
 	pass

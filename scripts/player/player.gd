@@ -6,12 +6,22 @@ func play_animation(animation_name: String) -> void:
 func stop_animation() -> void:
 	animated_sprite_2d.stop()
 	pass
+func flip_sprite() -> void:
+	if animated_sprite_2d.flip_h:
+		animated_sprite_2d.flip_h = false
+	else:
+		animated_sprite_2d.flip_h = true
+func set_state(state: String) -> void:
+	if state_machine:
+		state_machine._transition_to_next_state(state)
+func set_flip(is_flipped: bool) -> void:
+	animated_sprite_2d.flip_h = is_flipped
 func _ready() -> void:
 	
 	pass
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	print("ENTER DEAD ZONE")
+	#print("ENTER DEAD ZONE")
 	if state_machine:
 		state_machine._transition_to_next_state("Death")
 

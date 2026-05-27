@@ -6,6 +6,11 @@ func enter(previous_state_path: String, data = {}) -> void:
 
 func physics_update(delta: float) -> void:
 	
+	if player.facing_diraction > 0:
+		player.animated_sprite_2d.flip_h = false
+	elif player.facing_diraction < 0:
+		player.animated_sprite_2d.flip_h = true
+	
 	player.velocity.y = min(player.velocity.y + player.GRAVITY * 0.1 * delta, player.MAX_WALL_SLIDE_SPEED)
 	player.velocity.x = player.wall_direction * 10.0
 	
