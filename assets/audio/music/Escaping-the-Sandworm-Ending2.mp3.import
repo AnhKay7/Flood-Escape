@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cjub4efsl7dep"
-path="res://.godot/imported/Escaping-the-Sandworm-Ending2.mp3-79472c634372e3b0dae604fbeadb94fe.mp3str"
+path="res://.godot/imported/Escaping-the-Sandworm-Ending2.mp3-fa7cfae8920a85fdf7ae1dcd5ffa81cb.mp3str"
 
 [deps]
 
-source_file="res://assets/audio/music/Escaping-the-Sandworm-Ending2.mp3"
-dest_files=["res://.godot/imported/Escaping-the-Sandworm-Ending2.mp3-79472c634372e3b0dae604fbeadb94fe.mp3str"]
+source_file="res://assets/audio/Music/Escaping-the-Sandworm-Ending2.mp3"
+dest_files=["res://.godot/imported/Escaping-the-Sandworm-Ending2.mp3-fa7cfae8920a85fdf7ae1dcd5ffa81cb.mp3str"]
 
 [params]
 

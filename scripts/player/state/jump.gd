@@ -1,6 +1,6 @@
 extends PlayerState
 
-@onready var jump: AudioStreamPlayer2D = $"../../Audio/Jump"
+@onready var jump: AudioStreamPlayer = $"../../Audio/Jump"
 
 func execute_jump(cur_jump_velocity : float) -> void:
 	player.velocity.y = cur_jump_velocity
@@ -24,6 +24,10 @@ func enter(previous_state_path: String, data = {}) -> void:
 	player.animated_sprite_2d.play("jump")
 
 func physics_update(delta: float) -> void:
+	if player.facing_diraction > 0:
+		player.animated_sprite_2d.flip_h = false
+	elif player.facing_diraction < 0:
+		player.animated_sprite_2d.flip_h = true
 	
 	if player.wall_jump_timer > 0:
 		player.direction = -player.wall_direction
@@ -41,7 +45,11 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_pressed("jump") == false: 
 		cut_jump()
 		#print(player.velocity.y)
-	
+		
+	if player.is_near_ladder and Input.is_action_pressed("up") and player.ladder_hop_timer <= 0:
+		finished.emit(LADDERCLIMB)
+		return
+		
 	if player.velocity.y > 0:
 		finished.emit(FALL)
 		return
