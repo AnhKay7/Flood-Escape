@@ -73,6 +73,7 @@ offset_left = 104.0
 offset_top = 94.0
 offset_right = 169.0
 offset_bottom = 125.0
+focus_mode = 0
 text = "Restart
 "
 
@@ -82,6 +83,7 @@ offset_left = 104.0
 offset_top = 57.0
 offset_right = 169.0
 offset_bottom = 88.0
+focus_mode = 0
 text = "Home"
 
 [node name="MenuBtn" type="Button" parent="." node_paths=PackedStringArray("main_menu")]
@@ -90,6 +92,7 @@ offset_left = 424.0
 offset_top = 4.0
 offset_right = 477.0
 offset_bottom = 35.0
+focus_mode = 0
 text = "menu"
 script = SubResource("GDScript_nbvmo")
 main_menu = NodePath("../MainMenu")

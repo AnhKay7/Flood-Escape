@@ -4,9 +4,9 @@
 [ext_resource type="TileSet" uid="uid://p26p05u402mf" path="res://assets/kenney_pixel-platformer/platform.tres" id="2_h1xfc"]
 [ext_resource type="TileSet" uid="uid://bglfq8jledvh4" path="res://assets/kenney_pixel-platformer/background.tres" id="3_005yg"]
 [ext_resource type="PackedScene" uid="uid://da1fpfbhoknrx" path="res://scenes/button_prefab/button.tscn" id="4_l0lk1"]
-[ext_resource type="Script" uid="uid://dlrtam5tsdux2" path="res://scripts/interactors/water.gd" id="5_tdyu2"]
-[ext_resource type="Script" uid="uid://ddc34owa6xhi5" path="res://scripts/interactors/water_area.gd" id="6_m3qte"]
-[ext_resource type="PackedScene" uid="uid://c1q6dnk6blo0f" path="res://scenes/player/player_new.tscn" id="7_adm7l"]
+[ext_resource type="Script" uid="uid://dlrtam5tsdux2" path="res://scripts/Interactors/Water.gd" id="5_tdyu2"]
+[ext_resource type="Script" uid="uid://ddc34owa6xhi5" path="res://scripts/Interactors/water_area.gd" id="6_m3qte"]
+[ext_resource type="PackedScene" uid="uid://c1q6dnk6blo0f" path="res://scenes/Player/player_new.tscn" id="7_adm7l"]
 [ext_resource type="PackedScene" uid="uid://b3m1ua2drmajh" path="res://scenes/menu/game_menu.tscn" id="8_y545s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buhrm"]

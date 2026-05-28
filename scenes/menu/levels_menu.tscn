@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://uk3hker1hvst"]
 
-[ext_resource type="Texture2D" uid="uid://di0fnb0jswt" path="res://assets/ui/main_menu_bg.png" id="1_5pek0"]
 [ext_resource type="Script" uid="uid://0whvrsa7opyi" path="res://scripts/level_menu.gd" id="1_tm3l8"]
+[ext_resource type="Texture2D" uid="uid://d0pr784yecpy5" path="res://assets/ui/background.png" id="2_1gfdk"]
 
 [sub_resource type="GDScript" id="GDScript_5pek0"]
 
@@ -21,9 +21,9 @@ offset_bottom = 270.0
 
 [node name="Background" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_right = 481.0
-offset_bottom = 269.0
-texture = ExtResource("1_5pek0")
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("2_1gfdk")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]

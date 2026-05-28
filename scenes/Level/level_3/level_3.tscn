@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://bo2t4k38h5aft"]
+[gd_scene load_steps=56 format=4 uid="uid://bo2t4k38h5aft"]
 
 [ext_resource type="Script" uid="uid://b1pvvi56mnx7l" path="res://scripts/level/level3/level_3_controller.gd" id="1_84ksr"]
 [ext_resource type="TileSet" uid="uid://b067y43hp6x5m" path="res://assets/TileSet/level_3.tres" id="1_jbbhb"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://don0bwgowf6j7" path="res://assets/audio/Object/Elevator/earthquake-cracking.mp3" id="18_80yve"]
 [ext_resource type="AudioStream" uid="uid://kjwcgmrallij" path="res://assets/audio/Object/Door/closing-metal-door.mp3" id="19_i530e"]
 [ext_resource type="TileSet" uid="uid://b1nrmetgy7gv5" path="res://assets/TileSet/visual_lv3.tres" id="22_c0qx1"]
+[ext_resource type="PackedScene" uid="uid://b3m1ua2drmajh" path="res://scenes/menu/game_menu.tscn" id="26_j7b4x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ur8a"]
 texture = ExtResource("4_23cco")
@@ -247,7 +248,6 @@ size = Vector2(32, 18.5)
 
 [sub_resource type="GDScript" id="GDScript_i530e"]
 script/source = "extends Area2D
-
 
 signal pre_elevator_reached
 
@@ -1377,7 +1377,7 @@ shape = SubResource("RectangleShape2D_i530e")
 
 [node name="Player" parent="." node_paths=PackedStringArray("world_tilemap") instance=ExtResource("2_42xeq")]
 z_index = 4
-position = Vector2(-27, -20)
+position = Vector2(1458, -4018)
 world_tilemap = NodePath("../World/Test/Ladder")
 
 [node name="playercamera" type="Camera2D" parent="Player"]
@@ -1572,6 +1572,20 @@ z_index = -2
 position = Vector2(-431, -977)
 tile_map_data = PackedByteArray("AAAAAAMAAAAKAAYAAAD//wMAAAAIAAYAAAD+/wMAAAAIAAYAAAD5/wMAAAAIAAYAAAD6/wMAAAAIAAYAAAD7/wMAAAAIAAYAAAD8/wMAAAAJAAYAAAD9/wMAAAAIAAYAAAD4/wMAAAAIAAYAAAD3/wMAAAAHAAYAAAA=")
 tile_set = ExtResource("22_c0qx1")
+
+[node name="Menu" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+
+[node name="GameMenu" parent="Menu" instance=ExtResource("26_j7b4x")]
+
+[node name="Label" type="Label" parent="Menu"]
+visible = false
+offset_left = 244.0
+offset_top = 71.0
+offset_right = 284.0
+offset_bottom = 94.0
+text = "Win"
 
 [connection signal="body_entered" from="World/Interactor/Button1" to="World/Interactor/Button1" method="_on_body_entered"]
 [connection signal="body_exited" from="World/Interactor/Button1" to="World/Interactor/Button1" method="_on_body_exited"]

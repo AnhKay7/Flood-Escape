@@ -7,6 +7,7 @@ extends Node2D
 @onready var explosion: AudioStreamPlayer = $Audio/Explosion
 @onready var cut_scene: AnimationPlayer = $CutScene/AnimationPlayer
 @onready var playercamera: Camera2D = $Player/playercamera
+@onready var game_menu_node: Node2D = $Menu/GameMenu
 
 var is_level_cleared: bool = false
 
@@ -47,6 +48,8 @@ func _on_finish_line_body_entered(body: Node2D) -> void:
 		print("STAGE CLEAR!!!")
 		await get_tree().create_timer(3.0).timeout
 		get_tree().paused = true
+		if game_menu_node and game_menu_node.has_method("activate_win_menu"):
+			game_menu_node.activate_win_menu()
 		pass
 	pass
 
