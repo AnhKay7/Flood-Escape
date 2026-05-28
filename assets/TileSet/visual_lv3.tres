@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://b1nrmetgy7gv5"]
 
-[ext_resource type="Texture2D" uid="uid://bk4teknkpevdb" path="res://assets/kenney_pixel_platformer_industrial/Tilemap/tilemap.png" id="1_kuvru"]
+[ext_resource type="Texture2D" uid="uid://bsy2atsba7rd0" path="res://assets/kenney_pixel_platformer_industrial/Tilemap/tilemap.png" id="1_kuvru"]
 [ext_resource type="Texture2D" uid="uid://csx0anmky2q32" path="res://assets/objects/spikes.png" id="2_36u6d"]
 [ext_resource type="Texture2D" uid="uid://dqi4ld8ynnmj0" path="res://assets/Sunny-land-files/Assets/environment/tileset.png" id="3_n1u3g"]
 [ext_resource type="Texture2D" uid="uid://bttc4jwy1twxm" path="res://assets/kenney_pixel-platformer/Tilemap/tilemap.png" id="4_ullco"]

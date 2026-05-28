@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bxxpjjw6x35b2"]
 
-[ext_resource type="Texture2D" uid="uid://bk4teknkpevdb" path="res://assets/kenney_pixel_platformer_industrial/Tilemap/tilemap.png" id="1_nnpqb"]
+[ext_resource type="Texture2D" uid="uid://bsy2atsba7rd0" path="res://assets/kenney_pixel_platformer_industrial/Tilemap/tilemap.png" id="1_nnpqb"]
 [ext_resource type="Texture2D" uid="uid://csx0anmky2q32" path="res://assets/objects/spikes.png" id="2_jbv5p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0qx1"]

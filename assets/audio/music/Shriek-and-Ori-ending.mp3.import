@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://byihuljkqag4x"
-path="res://.godot/imported/Shriek-and-Ori-ending.mp3-db4e7d01da4857b64797a1e72c45c403.mp3str"
+path="res://.godot/imported/Shriek-and-Ori-ending.mp3-0adc375918092bca85cb9b0a8e34d5ea.mp3str"
 
 [deps]
 
-source_file="res://assets/audio/Music/Shriek-and-Ori-ending.mp3"
-dest_files=["res://.godot/imported/Shriek-and-Ori-ending.mp3-db4e7d01da4857b64797a1e72c45c403.mp3str"]
+source_file="res://assets/audio/music/Shriek-and-Ori-ending.mp3"
+dest_files=["res://.godot/imported/Shriek-and-Ori-ending.mp3-0adc375918092bca85cb9b0a8e34d5ea.mp3str"]
 
 [params]
 
