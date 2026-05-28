@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://da1fpfbhoknrx"]
 
-[ext_resource type="Script" uid="uid://bd6lgvmme3fic" path="res://scripts/interactors/button.gd" id="1_mfcdv"]
+[ext_resource type="Script" uid="uid://bd6lgvmme3fic" path="res://scripts/Interactors/Button.gd" id="1_mfcdv"]
 [ext_resource type="Texture2D" uid="uid://b54r8imavtcdh" path="res://assets/kenney_pixel-platformer/Tiles/tile_0108.png" id="2_7busl"]
 [ext_resource type="Texture2D" uid="uid://l8k5xswbepaj" path="res://assets/kenney_pixel-platformer/Tiles/tile_0107.png" id="3_k0o3o"]
 
