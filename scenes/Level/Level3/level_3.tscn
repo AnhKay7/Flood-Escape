@@ -1377,7 +1377,7 @@ shape = SubResource("RectangleShape2D_i530e")
 
 [node name="Player" parent="." node_paths=PackedStringArray("world_tilemap") instance=ExtResource("2_42xeq")]
 z_index = 4
-position = Vector2(-22, -84)
+position = Vector2(-27, -20)
 world_tilemap = NodePath("../World/Test/Ladder")
 
 [node name="playercamera" type="Camera2D" parent="Player"]
