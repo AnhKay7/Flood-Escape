@@ -5,8 +5,8 @@ signal player_died
 @export var default_rise_speed: float = 20.0       
 @export var default_lower_amount: float = 50.0     
 
-var current_rise_speed: float = 0.0
-var is_rising: bool = false
+var current_rise_speed: float = 10.0
+var is_rising: bool = true
 var is_lowering: bool = false 
 
 static var instance: TileMapLayer
