@@ -11,4 +11,4 @@ Group project (3 members) — 2D platforms game
 
 ## Tech Stack
 GDScript (Godot Engine)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xRHcOrjf8_E?si=VNch1lVIxhOia5U9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[<iframe width="560" height="315" src="https://www.youtube.com/embed/xRHcOrjf8_E?si=VNch1lVIxhOia5U9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>](https://youtu.be/xRHcOrjf8_E?si=se6X0YsZ9oxzu6ED)
